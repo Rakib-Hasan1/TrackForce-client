@@ -1,18 +1,36 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router";
-
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { useMutation } from "@tanstack/react-query";
+
 import useAuth from "../../hooks/useAuth";
+import SocialLogin from "../../Components/SocialLogin";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const imageHostKey = import.meta.env.VITE_IMGBB_API_KEY;
 
-const Register = () => {
+const Registration = () => {
   const { createUser, updateUserProfile } = useAuth();
   const [firebaseError, setFirebaseError] = useState("");
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
+  const { mutate: saveUserToDB } = useMutation({
+    mutationFn: async (userInfo) => {
+      const res = await axiosSecure.post("/peoples", userInfo);
+      return res.data;
+    },
+    onSuccess: () => {
+      console.log("User saved to DB");
+    },
+    onError: (err) => {
+      console.error("DB save error:", err);
+      toast.error("Failed to save user data.");
+    },
+  });
+  
   const {
     register,
     handleSubmit,
@@ -23,13 +41,11 @@ const Register = () => {
   const onSubmit = async (data) => {
     setFirebaseError("");
 
-    // Validate image
     if (!data.photo[0]) {
       toast.error("Please upload a profile image.");
       return;
     }
 
-    // Upload image to imgbb
     const formData = new FormData();
     formData.append("image", data.photo[0]);
 
@@ -44,50 +60,41 @@ const Register = () => {
       const imageData = await res.json();
       const photoURL = imageData.data.display_url;
 
-      // Create Firebase User
-      await createUser(data.email, data.password)
-        .then((userCredential) => {
-          // Signed up
-          console.log(userCredential.user);
-          Swal.fire({
-            icon: "success",
-            title: "Registration Successful!",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+      const result = await createUser(data.email, data.password);
+      const user = result.user;
 
-          reset();
-          navigate("/");
-        })
-        .catch((error) => {
-          const errorMessage = error.message;
-          console.log(errorMessage);
-        });
-
-      console.log(data.name, photoURL);
-      // Update profile
-
-      const userProfile = {
-        displayName: data?.name,
+      await updateUserProfile({
+        displayName: data.name,
         photoURL: photoURL,
+      });
+
+      // ✅ Prepare data to send to DB
+      const userInfo = {
+        name: data.name,
+        email: data.email,
+        photo: photoURL,
+        role: data.role,
+        bank_account_no: data.bank_account_no,
+        salary: parseFloat(data.salary),
+        designation: data.designation,
+        isVerified: false,
       };
 
-      await updateUserProfile(userProfile)
-        .then(() => {
-            console.log('Profile Updated');
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+      saveUserToDB(userInfo);
 
-      // Save user in your DB (optional)
+      Swal.fire({
+        icon: "success",
+        title: "Registration Successful!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      reset();
+      navigate("/");
+
     } catch (error) {
-      console.error(error.message);
-      if (error.code === "auth/email-already-in-use") {
-        setFirebaseError("This email is already registered.");
-      } else {
-        setFirebaseError("Registration failed. Please try again.");
-      }
+      console.error("Registration error:", error);
+      setFirebaseError(error.message || "Something went wrong.");
     }
   };
 
@@ -170,10 +177,52 @@ const Register = () => {
               </option>
               <option value="employee">Employee</option>
               <option value="hr">HR</option>
-              {/* No Admin here */}
             </select>
             {errors.role && (
               <p className="text-red-600 text-sm">{errors.role.message}</p>
+            )}
+          </div>
+
+          {/* Bank Account */}
+          <div>
+            <label className="block text-sm font-medium">Bank Account No.</label>
+            <input
+              {...register("bank_account_no", { required: "Bank account no. is required" })}
+              className="w-full mt-1 px-4 py-2 border rounded-lg focus:outline-blue-500"
+              placeholder="1234567890"
+            />
+            {errors.bank_account_no && (
+              <p className="text-red-600 text-sm">
+                {errors.bank_account_no.message}
+              </p>
+            )}
+          </div>
+
+          {/* Salary */}
+          <div>
+            <label className="block text-sm font-medium">Salary</label>
+            <input
+              type="number"
+              step="any"
+              {...register("salary", { required: "Salary is required" })}
+              className="w-full mt-1 px-4 py-2 border rounded-lg focus:outline-blue-500"
+              placeholder="30000"
+            />
+            {errors.salary && (
+              <p className="text-red-600 text-sm">{errors.salary.message}</p>
+            )}
+          </div>
+
+          {/* Designation */}
+          <div>
+            <label className="block text-sm font-medium">Designation</label>
+            <input
+              {...register("designation", { required: "Designation is required" })}
+              className="w-full mt-1 px-4 py-2 border rounded-lg focus:outline-blue-500"
+              placeholder="Software Engineer"
+            />
+            {errors.designation && (
+              <p className="text-red-600 text-sm">{errors.designation.message}</p>
             )}
           </div>
 
@@ -196,13 +245,14 @@ const Register = () => {
             <p className="text-red-600 text-sm mt-1">{firebaseError}</p>
           )}
 
-          {/* Submit */}
           <button
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
           >
             Register
           </button>
+
+          <SocialLogin />
         </form>
 
         <p className="mt-4 text-sm text-center">
@@ -216,4 +266,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Registration;

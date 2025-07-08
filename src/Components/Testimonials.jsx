@@ -10,70 +10,70 @@ const testimonials = [
     role: "HR Executive",
     quote:
       "TrackForce has completely transformed how I manage payroll and employee tasks. It's intuitive, fast, and reliable.",
-    photo: "https://i.ibb.co/9gVYpRd/avatar1.jpg",
+    // photo: "https://i.ibb.co/9gVYpRd/avatar1.jpg",
   },
   {
     name: "James Roy",
     role: "Employee",
     quote:
       "I love how easy it is to submit my work updates and track my progress. The dashboard is clean and simple!",
-    photo: "https://i.ibb.co/f2DtswX/avatar2.jpg",
+    // photo: "https://i.ibb.co/f2DtswX/avatar2.jpg",
   },
   {
     name: "Shamim Kabir",
     role: "Admin",
     quote:
       "Managing employee roles, salary, and HR permissions is effortless with TrackForce.",
-    photo: "https://i.ibb.co/JvDmjzW/avatar3.jpg",
+    // photo: "https://i.ibb.co/JvDmjzW/avatar3.jpg",
   },
   {
     name: "Emily Parker",
     role: "Project Manager",
     quote:
       "With TrackForce, I can easily coordinate with HR and monitor my team's productivity without juggling multiple tools.",
-    photo: "https://i.ibb.co/jZfVN0h/avatar4.jpg",
+    // photo: "https://i.ibb.co/jZfVN0h/avatar4.jpg",
   },
   {
     name: "Michael Liu",
     role: "Software Engineer",
     quote:
       "Submitting work logs and viewing my payment history is super simple. TrackForce saves me time every week.",
-    photo: "https://i.ibb.co/yN2R6mK/avatar5.jpg",
+    // photo: "https://i.ibb.co/yN2R6mK/avatar5.jpg",
   },
   {
     name: "Ayesha Nasrin",
     role: "HR Executive",
     quote:
       "Verifying employees and handling payroll used to take hours. Now it's all done in just a few clicks!",
-    photo: "https://i.ibb.co/7Gtxdfx/avatar6.jpg",
+    // photo: "https://i.ibb.co/7Gtxdfx/avatar6.jpg",
   },
   {
     name: "John Mathews",
     role: "Marketing Lead",
     quote:
       "Great platform for mid-size teams. I can track our performance and support requests easily.",
-    photo: "https://i.ibb.co/3h98Wx2/avatar7.jpg",
+    // photo: "https://i.ibb.co/3h98Wx2/avatar7.jpg",
   },
   {
     name: "Lamia Rahman",
     role: "Admin",
     quote:
       "From firing users to promoting HRs, TrackForce gives me full control without the technical hassle.",
-    photo: "https://i.ibb.co/1dW9p9m/avatar8.jpg",
+    // photo: "https://i.ibb.co/1dW9p9m/avatar8.jpg",
   },
   {
     name: "Raihan Islam",
     role: "Support Specialist",
     quote:
       "It’s so convenient to log my daily hours and see what I did each week. Highly organized system!",
-    photo: "https://i.ibb.co/TMX7GrD/avatar9.jpg",
+    // photo: "https://i.ibb.co/TMX7GrD/avatar9.jpg",
   },
   {
     name: "Nusrat Jahan",
     role: "Data Analyst",
     quote:
       "I like how clean the dashboard is. Everything is well structured, and the HR communication is seamless.",
-    photo: "https://i.ibb.co/By0KtZG/avatar10.jpg",
+    // photo: "https://i.ibb.co/By0KtZG/avatar10.jpg",
   },
 ];
 
@@ -126,7 +126,7 @@ const Testimonials = () => {
                   </p>
                   <div className="flex flex-col items-center">
                     <img
-                      src={t.photo}
+                      src={t?.photo || ''}
                       alt={t.name}
                       className="w-14 h-14 rounded-full border-2 border-blue-400 mb-2 object-cover"
                     />

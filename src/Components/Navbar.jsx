@@ -4,6 +4,7 @@ import logo from "../assets/image (3).jpg";
 // import { useAuth } from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
+import logo2 from "../assets/user.png";
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
@@ -121,8 +122,7 @@ const Navbar = () => {
               <div className="w-10 rounded-full border border-blue-500">
                 <img
                   src={
-                    user?.photoURL ||
-                    "https://i.ibb.co/2kRkkwH/default-avatar.png"
+                    user?.photoURL || logo2
                   }
                   alt="User Avatar"
                 />

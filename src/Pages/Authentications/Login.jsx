@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import SocialLogin from "../../Components/SocialLogin";
 
 const Login = () => {
   const { signInUser } = useAuth();
@@ -97,6 +98,8 @@ const Login = () => {
           >
             Login
           </button>
+
+          <SocialLogin></SocialLogin>
         </form>
 
         <p className="mt-4 text-sm text-center">

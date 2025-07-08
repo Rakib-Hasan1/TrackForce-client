@@ -1,17 +1,21 @@
+import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router";
 import {
+  FaBars,
   FaHome,
   FaMoneyCheckAlt,
   FaClipboardList,
   FaUsers,
   FaSignOutAlt,
+  FaTimes,
 } from "react-icons/fa";
-import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAuth from "../hooks/useAuth";
 import logo from "../assets/image (3).jpg";
 
 const DashboardLayouts = () => {
   const { logoutUser } = useAuth();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -28,20 +32,36 @@ const DashboardLayouts = () => {
     }
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
-    <div className="min-h-screen flex bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100">
+    <div className="min-h-screen flex bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 relative">
+      {/* Mobile toggle button */}
+      <button
+        className="md:hidden absolute top-4 left-4 z-50 text-2xl"
+        onClick={toggleSidebar}
+      >
+        {isSidebarOpen ? <FaTimes /> : <FaBars />}
+      </button>
+
       {/* Sidebar */}
-      <aside className="w-64 hidden md:flex flex-col bg-white dark:bg-gray-800 shadow-lg">
+      <aside
+        className={`fixed md:static top-0 left-0 z-40 h-full w-64 bg-white dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+        }`}
+      >
         <div className="px-6 py-5 text-xl font-semibold border-b border-gray-200 dark:border-gray-700">
           <Link to="/">
             <img
               src={logo}
-              className="h-10 rounded-4xl object-cover ml-2 hover:scale-105 transition-transform"
+              className="h-14 w-full rounded-4xl object-cover ml-2 hover:scale-105 transition-transform"
               alt="TrackForce Logo"
             />
           </Link>
         </div>
-        <nav className="flex flex-col gap-1 p-4">
+        <nav className="min-h-[90vh] flex flex-col gap-1 p-4">
           <NavLink
             to="/dashboard"
             end
