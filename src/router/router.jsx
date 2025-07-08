@@ -4,6 +4,9 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Authentications/Login";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import Registration from "../Pages/Authentications/Registration";
+import DashboardLayouts from "../Layouts/DashboardLayouts";
+import WorkSheet from "../Pages/Dashboard/WorkSheet";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +28,20 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         Component: Registration,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    Component: DashboardLayouts,
+    children: [
+      {
+        path: "work-sheet",
+        Component: WorkSheet,
+      },
+      {
+        path: "Payment-history",
+        Component: PaymentHistory,
       },
     ],
   },
