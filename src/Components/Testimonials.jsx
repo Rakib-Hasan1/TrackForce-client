@@ -126,7 +126,7 @@ const Testimonials = () => {
                   </p>
                   <div className="flex flex-col items-center">
                     <img
-                      src={t?.photo || ''}
+                      // src={t?.photo || ''}
                       alt={t.name}
                       className="w-14 h-14 rounded-full border-2 border-blue-400 mb-2 object-cover"
                     />
