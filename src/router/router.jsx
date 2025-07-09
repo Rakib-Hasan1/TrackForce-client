@@ -7,6 +7,7 @@ import Registration from "../Pages/Authentications/Registration";
 import DashboardLayouts from "../Layouts/DashboardLayouts";
 import WorkSheet from "../Pages/Dashboard/WorkSheet";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory";
+import PrivateRoute from "../Routes/PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -33,7 +34,12 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    Component: DashboardLayouts,
+    // Component: DashboardLayouts,
+    element: (
+      <PrivateRoute>
+        <DashboardLayouts></DashboardLayouts>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "work-sheet",
