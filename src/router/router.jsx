@@ -8,6 +8,9 @@ import DashboardLayouts from "../Layouts/DashboardLayouts";
 import WorkSheet from "../Pages/Dashboard/WorkSheet";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory";
 import PrivateRoute from "../Routes/PrivateRoutes";
+import EmployeeList from "../Pages/Dashboard/EmployeeList";
+import HRRoutes from "../Routes/HRRoutes";
+import Forbidden from "../Pages/Forbidden/Forbidden";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +33,10 @@ export const router = createBrowserRouter([
         path: "/register",
         Component: Registration,
       },
+      {
+        path: "/forbidden",
+        Component: Forbidden,
+      },
     ],
   },
   {
@@ -48,6 +55,15 @@ export const router = createBrowserRouter([
       {
         path: "Payment-history",
         Component: PaymentHistory,
+      },
+      {
+        path: "employee-list",
+        // Component: EmployeeList,
+        element: (
+          <HRRoutes>
+            <EmployeeList></EmployeeList>
+          </HRRoutes>
+        ),
       },
     ],
   },

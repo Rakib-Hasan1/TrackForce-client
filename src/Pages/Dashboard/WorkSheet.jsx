@@ -20,7 +20,6 @@ const WorkSheet = () => {
     register,
     handleSubmit,
     reset,
-    setValue,
     formState: { errors },
   } = useForm();
 
@@ -83,23 +82,30 @@ const WorkSheet = () => {
       date: selectedDate.toISOString(),
     };
 
-    if (editingItem) {
-      updateWork({ id: editingItem._id, updatedWork: workItem });
-    } else {
-      addWork(workItem);
-    }
+    addWork(workItem);
+  };
+
+  const handleEditSubmit = (e) => {
+    e.preventDefault();
+    const updatedWork = {
+      email: user?.email,
+      task: e.target.task.value,
+      hours: parseFloat(e.target.hours.value),
+      date: selectedDate.toISOString(),
+    };
+    updateWork({ id: editingItem._id, updatedWork });
   };
 
   const handleEdit = (item) => {
     setEditingItem(item);
-    setValue("task", item.task);
-    setValue("hours", item.hours);
     setSelectedDate(new Date(item.date));
   };
 
   return (
     <div className="w-11/12 mx-auto">
-      <h2 className="text-2xl font-semibold text-blue-700 mb-6">📝 Work Sheet</h2>
+      <h2 className="text-2xl font-semibold text-blue-700 mb-6">
+        📝 Work Sheet
+      </h2>
 
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -131,15 +137,17 @@ const WorkSheet = () => {
         <DatePicker
           selected={selectedDate}
           onChange={(date) => setSelectedDate(date)}
-          className="border border-blue-300 px-4 py-2 rounded-md w-72"
+          className="border border-blue-300 px-4 py-2 rounded-md w-full"
           placeholderText="Select a date"
           dateFormat="yyyy-MM-dd"
         />
 
         <button className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition w-full md:w-auto cursor-pointer">
-          {editingItem ? "Update" : "Submit"}
+          Submit
         </button>
       </form>
+
+      {/* works data */}
 
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white shadow-md rounded-md overflow-hidden">
@@ -157,11 +165,13 @@ const WorkSheet = () => {
               <tr key={work._id} className="border-b">
                 <td className="p-3">{work.task}</td>
                 <td className="p-3">{work.hours}</td>
-                <td className="p-3">{new Date(work.date).toLocaleDateString()}</td>
+                <td className="p-3">
+                  {new Date(work.date).toLocaleDateString()}
+                </td>
                 <td className="p-3 text-left space-x-2">
                   <button
                     onClick={() => handleEdit(work)}
-                    className="text-blue-600 hover:underline cursor-pointer"
+                    className="btn btn-sm btn-outline btn-success"
                   >
                     🖊 Edit
                   </button>
@@ -169,7 +179,7 @@ const WorkSheet = () => {
                 <td>
                   <button
                     onClick={() => handleDelete(work._id)}
-                    className="text-red-600 hover:underline cursor-pointer"
+                    className="btn btn-error btn-sm btn-outline"
                   >
                     ❌ Delete
                   </button>
@@ -178,7 +188,10 @@ const WorkSheet = () => {
             ))}
             {!workData.length && (
               <tr>
-                <td colSpan="5" className="font-semibold text-2xl text-center py-4 text-gray-500">
+                <td
+                  colSpan="5"
+                  className="font-semibold text-2xl text-center py-4 text-gray-500"
+                >
                   No data found.
                 </td>
               </tr>
@@ -189,7 +202,11 @@ const WorkSheet = () => {
 
       {/* Headless UI Modal */}
       <Transition appear show={!!editingItem} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={() => setEditingItem(null)}>
+        <Dialog
+          as="div"
+          className="relative z-10"
+          onClose={() => setEditingItem(null)}
+        >
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -214,13 +231,18 @@ const WorkSheet = () => {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                  <Dialog.Title
+                    as="h3"
+                    className="text-lg font-medium leading-6 text-gray-900"
+                  >
                     Edit Work
                   </Dialog.Title>
-                  <form onSubmit={handleSubmit(onSubmit)} className="mt-4 space-y-4">
+                  <form onSubmit={handleEditSubmit} className="mt-4 space-y-4">
                     <select
-                      {...register("task", { required: true })}
+                      name="task"
+                      defaultValue={editingItem?.task}
                       className="w-full px-4 py-2 border rounded-md"
+                      required
                     >
                       <option value="Sales">Sales</option>
                       <option value="Support">Support</option>
@@ -231,10 +253,12 @@ const WorkSheet = () => {
                     </select>
 
                     <input
+                      name="hours"
                       type="number"
-                      {...register("hours", { required: true, min: 1 })}
+                      defaultValue={editingItem?.hours}
                       placeholder="Hours Worked"
                       className="w-full px-4 py-2 border rounded-md"
+                      required
                     />
 
                     <DatePicker
