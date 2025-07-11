@@ -13,6 +13,8 @@ import HRRoutes from "../Routes/HRRoutes";
 import Forbidden from "../Pages/Forbidden/Forbidden";
 import EmployeeDetails from "../Pages/Dashboard/EmployeeDetails";
 import Progress from "../Pages/Dashboard/Progress";
+import AllEmployeeList from "../Pages/Dashboard/AllEmployeeList";
+import AdminRoute from "../Routes/AdminRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -60,23 +62,23 @@ export const router = createBrowserRouter([
       },
       {
         path: "employee-list",
-        element: (
-          <HRRoutes>
-            <EmployeeList></EmployeeList>
-          </HRRoutes>
-        ),
+        element: <EmployeeList></EmployeeList>,
       },
       {
         path: "progress",
-        element: (
-          <HRRoutes>
-            <Progress></Progress>
-          </HRRoutes>
-        ),
+        element: <Progress></Progress>,
       },
       {
         path: "/dashboard/employee-list/:id",
         element: <EmployeeDetails />,
+      },
+      {
+        path: "all-employee",
+        element: (
+          <AdminRoute>
+            <AllEmployeeList></AllEmployeeList>
+          </AdminRoute>
+        ),
       },
     ],
   },

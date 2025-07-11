@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import LoadingEffect from "../../Components/LoadingEffect";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const EmployeeList = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
-  const [selectedPerson, setSelectedPerson] = useState(null);
+  const [showPayModal, setShowPayModal] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
 
   const { data: peoplesData = [], isLoading } = useQuery({
     queryKey: ["completedDeliveries"],
@@ -35,15 +36,28 @@ const EmployeeList = () => {
     },
   });
 
-  const handlePay = (data) => {
-    // TODO: proceed to payment
-    console.log("proceed to payment", data);
+  const handlePay = (employee) => {
+    setSelectedEmployee(employee);
+    setShowPayModal(true);
   };
 
-  // const handleView = (person) => {
-  //   setSelectedPerson(person);
-  //   // document.getElementById("profile_modal").showModal();
-  // };
+  const handleSubmitPayment = async (paymentData) => {
+    try {
+      const res = await axiosSecure.post("/payment", {
+        ...paymentData,
+        status: "pending", // default status for admin approval
+        requestedBy: user.email,
+      });
+
+      if (res.data.insertedId) {
+        Swal.fire("Success!", "Payment request sent.", "success");
+        setShowPayModal(false);
+      }
+    } catch (err) {
+      console.error(err);
+      Swal.fire("Error", "Failed to send payment request.", "error");
+    }
+  };
 
   if (isLoading) {
     return <LoadingEffect></LoadingEffect>;
@@ -162,50 +176,75 @@ const EmployeeList = () => {
         </table>
       </div>
 
-      <dialog id="profile_modal" className="modal">
-        <div className="modal-box max-w-sm text-center">
-          {selectedPerson && (
-            <>
-              {/* Profile Image */}
-              <img
-                src={selectedPerson.photo || "https://via.placeholder.com/120"}
-                alt="Profile"
-                className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
-              />
+      {showPayModal && selectedEmployee && (
+        <dialog open className="modal">
+          <div className="modal-box max-w-sm">
+            <h3 className="font-bold text-lg mb-4">Process Payment</h3>
 
-              {/* Name */}
-              <h2 className="text-2xl font-semibold mb-1">
-                {selectedPerson.name}
-              </h2>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const form = e.target;
+                const month = form.month.value;
+                const year = form.year.value;
 
-              {/* Designation / Role */}
-              <p className="text-gray-500 mb-3">{selectedPerson.role}</p>
+                handleSubmitPayment({
+                  employeeId: selectedEmployee._id,
+                  name: selectedEmployee.name,
+                  salary: selectedEmployee.salary,
+                  month,
+                  year,
+                });
+              }}
+            >
+              <div className="mb-2">
+                <label className="block mb-1">Salary</label>
+                <input
+                  type="number"
+                  value={selectedEmployee.salary}
+                  readOnly
+                  className="input input-bordered w-full"
+                />
+              </div>
 
-              {/* Verified Status */}
-              <p className="text-lg">
-                Verification Status: <br />
-                <span
-                  className={
-                    selectedPerson.isVerified
-                      ? "text-green-600"
-                      : "text-red-600"
-                  }
+              <div className="mb-2">
+                <label className="block mb-1">Month</label>
+                <input
+                  type="text"
+                  name="month"
+                  placeholder="e.g., July"
+                  required
+                  className="input input-bordered w-full"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block mb-1">Year</label>
+                <input
+                  type="number"
+                  name="year"
+                  placeholder="e.g., 2025"
+                  required
+                  className="input input-bordered w-full"
+                />
+              </div>
+
+              <div className="modal-action">
+                <button type="submit" className="btn btn-success btn-sm">
+                  Pay
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline btn-sm"
+                  onClick={() => setShowPayModal(false)}
                 >
-                  {selectedPerson.isVerified
-                    ? "✅ Verified"
-                    : "❌ Not Verified"}
-                </span>
-              </p>
-            </>
-          )}
-
-          <div className="modal-action mt-6">
-            <form method="dialog">
-              <button className="btn btn-sm btn-outline">Close</button>
+                  Cancel
+                </button>
+              </div>
             </form>
           </div>
-        </div>
-      </dialog>
+        </dialog>
+      )}
     </div>
   );
 };
