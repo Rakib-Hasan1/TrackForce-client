@@ -4,6 +4,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import LoadingEffect from "../../Components/LoadingEffect";
 import Swal from "sweetalert2";
+import { Link } from "react-router";
 
 const EmployeeList = () => {
   const { user } = useAuth();
@@ -39,10 +40,10 @@ const EmployeeList = () => {
     console.log("proceed to payment", data);
   };
 
-  const handleView = (person) => {
-    setSelectedPerson(person);
-    document.getElementById("profile_modal").showModal();
-  };
+  // const handleView = (person) => {
+  //   setSelectedPerson(person);
+  //   // document.getElementById("profile_modal").showModal();
+  // };
 
   if (isLoading) {
     return <LoadingEffect></LoadingEffect>;
@@ -138,12 +139,12 @@ const EmployeeList = () => {
                   )}
                 </td>
                 <td className="p-3 text-left space-x-2">
-                  <button
-                    onClick={() => handleView(people)}
+                  <Link
+                    to={`/dashboard/employee-list/${people._id}`}
                     className="btn btn-sm btn-outline btn-success"
                   >
                     View
-                  </button>
+                  </Link>
                 </td>
               </tr>
             ))}

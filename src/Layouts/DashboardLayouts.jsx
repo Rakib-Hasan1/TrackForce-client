@@ -8,11 +8,13 @@ import {
   FaUsers,
   FaSignOutAlt,
   FaTimes,
+  FaChartLine,
 } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 import logo from "../assets/image (3).jpg";
 import useUserRole from "../Hooks/useUserRole";
+import LoadingEffect from "../Components/LoadingEffect";
 
 const DashboardLayouts = () => {
   const { logoutUser } = useAuth();
@@ -35,6 +37,9 @@ const DashboardLayouts = () => {
       Swal.fire("Logout Failed", error.message, "error");
     }
   };
+  if (roleLoading) {
+    return <LoadingEffect></LoadingEffect>;
+  }
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -79,29 +84,33 @@ const DashboardLayouts = () => {
             Dashboard Home
           </NavLink>
 
-          <NavLink
-            to="/dashboard/work-sheet"
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-100 dark:hover:bg-gray-700 ${
-                isActive ? "bg-blue-200 dark:bg-gray-700 font-semibold" : ""
-              }`
-            }
-          >
-            <FaClipboardList />
-            Work Sheet
-          </NavLink>
+          {!roleLoading && role === "employee" && (
+            <>
+              <NavLink
+                to="/dashboard/work-sheet"
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-100 dark:hover:bg-gray-700 ${
+                    isActive ? "bg-blue-200 dark:bg-gray-700 font-semibold" : ""
+                  }`
+                }
+              >
+                <FaClipboardList />
+                Work Sheet
+              </NavLink>
 
-          <NavLink
-            to="/dashboard/payment-history"
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-100 dark:hover:bg-gray-700 ${
-                isActive ? "bg-blue-200 dark:bg-gray-700 font-semibold" : ""
-              }`
-            }
-          >
-            <FaMoneyCheckAlt />
-            Payment History
-          </NavLink>
+              <NavLink
+                to="/dashboard/payment-history"
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-100 dark:hover:bg-gray-700 ${
+                    isActive ? "bg-blue-200 dark:bg-gray-700 font-semibold" : ""
+                  }`
+                }
+              >
+                <FaMoneyCheckAlt />
+                Payment History
+              </NavLink>
+            </>
+          )}
 
           {!roleLoading && role === "hr" && (
             <>
@@ -115,6 +124,17 @@ const DashboardLayouts = () => {
               >
                 <FaUsers />
                 Employee List
+              </NavLink>
+              <NavLink
+                to="/dashboard/progress"
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-100 dark:hover:bg-gray-700 ${
+                    isActive ? "bg-blue-200 dark:bg-gray-700 font-semibold" : ""
+                  }`
+                }
+              >
+                <FaChartLine />
+                Progress
               </NavLink>
             </>
           )}

@@ -50,18 +50,20 @@ const Navbar = () => {
           Contact Us
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/dashboard"
-          className={({ isActive }) =>
-            `transition-colors duration-200 ${
-              isActive ? "text-blue-700 font-semibold" : "text-gray-700"
-            } hover:text-blue-500`
-          }
-        >
-          Dashboard
-        </NavLink>
-      </li>
+      {user && (
+        <li>
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              `transition-colors duration-200 ${
+                isActive ? "text-blue-700 font-semibold" : "text-gray-700"
+              } hover:text-blue-500`
+            }
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
     </>
   );
 
@@ -120,12 +122,7 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 rounded-full border border-blue-500">
-                <img
-                  src={
-                    user?.photoURL || logo2
-                  }
-                  alt="User Avatar"
-                />
+                <img src={user?.photoURL || logo2} alt="User Avatar" />
               </div>
             </div>
 
