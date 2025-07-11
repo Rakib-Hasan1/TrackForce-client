@@ -15,6 +15,7 @@ import useAuth from "../hooks/useAuth";
 import logo from "../assets/image (3).jpg";
 import useUserRole from "../Hooks/useUserRole";
 import LoadingEffect from "../Components/LoadingEffect";
+import { FaMoneyCheckDollar } from "react-icons/fa6";
 
 const DashboardLayouts = () => {
   const { logoutUser } = useAuth();
@@ -150,6 +151,17 @@ const DashboardLayouts = () => {
               >
                 <FaUsers />
                 All Employee List
+              </NavLink>
+              <NavLink
+                to="/dashboard/payroll"
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-100 dark:hover:bg-gray-700 ${
+                    isActive ? "bg-blue-200 dark:bg-gray-700 font-semibold" : ""
+                  }`
+                }
+              >
+                <FaMoneyCheckDollar/>
+                Payroll
               </NavLink>
             </>
           )}

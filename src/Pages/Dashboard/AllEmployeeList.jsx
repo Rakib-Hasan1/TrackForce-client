@@ -91,7 +91,7 @@ const AllEmployeeList = () => {
           </thead>
           <tbody>
             {employees.map((person) => (
-              <tr key={person._id} className="border-b">
+              <tr key={person._id}>
                 <td className="p-3">{person.name}</td>
                 <td className="p-3">{person.designation}</td>
                 <td className="p-3 capitalize">{person.role}</td>
