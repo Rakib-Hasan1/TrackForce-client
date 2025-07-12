@@ -1,8 +1,13 @@
+import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
+import LoadingEffect from "../../Components/LoadingEffect";
+import useAxios from "../../Hooks/useAxios";
+
 const ContactUs = () => {
+const axiosInstance = useAxios();
   const {
     register,
     handleSubmit,
@@ -10,16 +15,33 @@ const ContactUs = () => {
     reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    // Here you can add your backend POST request or email sending logic.
-    Swal.fire({
-      icon: "success",
-      title: "Message Sent",
-      text: `Thank you, ${data.email}! We have received your message.`,
-      timer: 3000,
-      showConfirmButton: false,
-    });
-    reset();
+  const { mutate, isPending } = useMutation({
+    mutationFn: async (reviews) => {
+      const res = await axiosInstance.post("/reviews", reviews);
+      return res.data;
+    },
+    onSuccess: (data, variables) => {
+      Swal.fire({
+        icon: "success",
+        title: "Message Sent",
+        text: `Thank you, ${variables.email}! We have received your message.`,
+        timer: 3000,
+        showConfirmButton: false,
+      });
+      reset();
+    },
+    onError: (error) => {
+      console.error("Review submission error:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong. Please try again later.",
+      });
+    },
+  });
+
+  const onSubmit = (reviews) => {
+    mutate(reviews);
   };
 
   return (
@@ -99,6 +121,7 @@ const ContactUs = () => {
           >
             {isSubmitting ? "Sending..." : "Send Message"}
           </button>
+          {isPending && <LoadingEffect />}
         </form>
 
         {/* Dummy Company Info */}

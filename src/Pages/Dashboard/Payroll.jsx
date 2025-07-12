@@ -15,23 +15,11 @@ const Payroll = () => {
     },
   });
 
-  //   const payMutation = useMutation({
-  //     mutationFn: async (id) => {
-  //       return await axiosSecure.patch(`/payment-requests/${id}/pay`);
-  //     },
-  //     onSuccess: () => {
-  //       queryClient.invalidateQueries(["paymentRequests"]);
-  //       Swal.fire("Success", "Payment completed!", "success");
-  //     },
-  //     onError: () => {
-  //       Swal.fire("Error", "Failed to update payment.", "error");
-  //     },
-  //   });
+
 
   const handlePay = (id) => {
     // proceed to the payment
     navigate(`/dashboard/payment/${id}`);
-    // payMutation.mutate(id);
   };
 
   if (isLoading) return <LoadingEffect />;
@@ -39,7 +27,7 @@ const Payroll = () => {
   return (
     <div className="overflow-x-auto">
       <h2 className="text-2xl font-semibold mb-4">Payroll Requests</h2>
-      <table className="min-w-full bg-white rounded shadow">
+      <table className="table min-w-full bg-white rounded shadow">
         <thead className="bg-blue-600 text-white">
           <tr>
             <th className="p-3 text-left">Employee</th>

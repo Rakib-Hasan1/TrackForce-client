@@ -12,6 +12,7 @@ const EmployeeList = () => {
   const queryClient = useQueryClient();
   const [showPayModal, setShowPayModal] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
+  console.log(selectedEmployee);
 
   const { data: peoplesData = [], isLoading } = useQuery({
     queryKey: ["completedDeliveries"],
@@ -66,7 +67,7 @@ const EmployeeList = () => {
   return (
     <div>
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white shadow-md rounded-md overflow-hidden">
+        <table className="table min-w-full bg-white shadow-md rounded-md overflow-hidden">
           <thead className="bg-blue-600 text-white">
             <tr>
               <th className="p-3 text-left">Employee Image</th>
@@ -80,7 +81,7 @@ const EmployeeList = () => {
           </thead>
           <tbody>
             {peoplesData.map((people) => (
-              <tr key={people._id} className="border-b">
+              <tr key={people._id}>
                 <td className="p-3">
                   <img
                     src={people.photo}
@@ -191,6 +192,7 @@ const EmployeeList = () => {
                 handleSubmitPayment({
                   employeeId: selectedEmployee._id,
                   name: selectedEmployee.name,
+                  email: selectedEmployee.email,
                   salary: selectedEmployee.salary,
                   month,
                   year,

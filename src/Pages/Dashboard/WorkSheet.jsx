@@ -150,7 +150,7 @@ const WorkSheet = () => {
       {/* works data */}
 
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white shadow-md rounded-md overflow-hidden">
+        <table className="table min-w-full bg-white shadow-md rounded-md overflow-hidden">
           <thead className="bg-blue-600 text-white">
             <tr>
               <th className="p-3 text-left">Task</th>
@@ -162,7 +162,7 @@ const WorkSheet = () => {
           </thead>
           <tbody>
             {workData.map((work) => (
-              <tr key={work._id} className="border-b">
+              <tr key={work._id}>
                 <td className="p-3">{work.task}</td>
                 <td className="p-3">{work.hours}</td>
                 <td className="p-3">

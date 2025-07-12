@@ -24,7 +24,6 @@ const Navbar = () => {
     }
   };
 
-  // console.log(user?.photoURL);
 
   const navLinks = (
     <>
@@ -124,7 +123,7 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 rounded-full border border-blue-500">
-                <img src={user?.photoURL} alt="User Avatar" />
+                <img src={user? user?.photoURL : logo2} alt="User Avatar" />
               </div>
             </div>
 

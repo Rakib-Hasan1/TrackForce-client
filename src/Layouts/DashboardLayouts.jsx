@@ -58,10 +58,10 @@ const DashboardLayouts = () => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed md:static top-0 left-0 z-40 h-full w-64 bg-white dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
-        }`}
-      >
+  className={`z-40 h-screen w-64 bg-white dark:bg-gray-800 shadow-lg transition-transform duration-300
+  ${isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
+  fixed md:sticky top-0`}
+>
         <div className="px-6 py-5 text-xl font-semibold border-b border-gray-200 dark:border-gray-700">
           <Link to="/">
             <img
