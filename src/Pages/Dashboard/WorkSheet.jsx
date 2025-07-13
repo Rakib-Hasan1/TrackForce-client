@@ -77,6 +77,7 @@ const WorkSheet = () => {
   const onSubmit = (data) => {
     const workItem = {
       email: user?.email,
+      name: user?.displayName,
       task: data.task,
       hours: parseFloat(data.hours),
       date: selectedDate.toISOString(),
@@ -113,7 +114,7 @@ const WorkSheet = () => {
       >
         <select
           {...register("task", { required: true })}
-          className="border border-blue-300 px-4 py-2 rounded-md w-full md:w-1/4 cursor-pointer"
+          className="select border border-blue-300 px-4 py-2 rounded-md w-full md:w-1/4 cursor-pointer"
           defaultValue=""
         >
           <option value="" disabled>
@@ -131,7 +132,7 @@ const WorkSheet = () => {
           type="number"
           {...register("hours", { required: true, min: 1 })}
           placeholder="Hours Worked"
-          className="border border-blue-300 px-4 py-2 rounded-md w-full md:w-1/4"
+          className="select border border-blue-300 px-4 py-2 rounded-md w-full md:w-1/4"
         />
 
         <DatePicker
