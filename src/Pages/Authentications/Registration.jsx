@@ -30,7 +30,7 @@ const Registration = () => {
       toast.error("Failed to save user data.");
     },
   });
-  
+
   const {
     register,
     handleSubmit,
@@ -91,7 +91,6 @@ const Registration = () => {
 
       reset();
       navigate("/");
-
     } catch (error) {
       console.error("Registration error:", error);
       setFirebaseError(error.message || "Something went wrong.");
@@ -105,7 +104,10 @@ const Registration = () => {
           TrackForce Registration
         </h2>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="space-y-4 grid grid-cols-1 lg:grid-cols-2 gap-5"
+        >
           {/* Name */}
           <div>
             <label className="block text-sm font-medium">Full Name</label>
@@ -185,9 +187,13 @@ const Registration = () => {
 
           {/* Bank Account */}
           <div>
-            <label className="block text-sm font-medium">Bank Account No.</label>
+            <label className="block text-sm font-medium">
+              Bank Account No.
+            </label>
             <input
-              {...register("bank_account_no", { required: "Bank account no. is required" })}
+              {...register("bank_account_no", {
+                required: "Bank account no. is required",
+              })}
               className="w-full mt-1 px-4 py-2 border rounded-lg focus:outline-blue-500"
               placeholder="1234567890"
             />
@@ -217,23 +223,27 @@ const Registration = () => {
           <div>
             <label className="block text-sm font-medium">Designation</label>
             <input
-              {...register("designation", { required: "Designation is required" })}
+              {...register("designation", {
+                required: "Designation is required",
+              })}
               className="w-full mt-1 px-4 py-2 border rounded-lg focus:outline-blue-500"
               placeholder="Software Engineer"
             />
             {errors.designation && (
-              <p className="text-red-600 text-sm">{errors.designation.message}</p>
+              <p className="text-red-600 text-sm">
+                {errors.designation.message}
+              </p>
             )}
           </div>
 
           {/* Photo Upload */}
           <div>
-            <label className="block text-sm font-medium">Profile Photo</label>
+            <label className="block text-sm font-medium">Select Photo</label>
             <input
               type="file"
               accept="image/*"
               {...register("photo", { required: "Photo is required" })}
-              className="w-full mt-1"
+              className="w-full mt-1 px-4 py-2 border rounded-lg focus:outline-blue-500"
             />
             {errors.photo && (
               <p className="text-red-600 text-sm">{errors.photo.message}</p>
@@ -247,13 +257,14 @@ const Registration = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition col-span-2"
           >
             Register
           </button>
-
-          <SocialLogin />
         </form>
+        <div className="w-full">
+          <SocialLogin />
+        </div>
 
         <p className="mt-4 text-sm text-center">
           Already have an account?{" "}
