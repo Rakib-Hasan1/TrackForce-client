@@ -50,7 +50,7 @@ const Payroll = () => {
               <td className="p-3">
                 {req.paymentDate
                   ? new Date(req.paymentDate).toLocaleDateString()
-                  : "—"}
+                  : "Not paid"}
               </td>
               <td className="p-3">
                 <button

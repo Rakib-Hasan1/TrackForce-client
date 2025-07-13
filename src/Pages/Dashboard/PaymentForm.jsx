@@ -97,7 +97,7 @@ const PaymentForm = () => {
       }
     } catch (err) {
       console.error("Payment error:", err);
-      setError("Something went wrong! Please try again.");
+      setError("Something went wrong or employee may get the salary of this month!");
     } finally {
       setLoading(false); // ✅ enable button again
     }
