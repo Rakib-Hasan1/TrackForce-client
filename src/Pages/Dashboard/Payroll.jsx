@@ -25,15 +25,15 @@ const Payroll = () => {
   if (isLoading) return <LoadingEffect />;
 
   return (
-    <div className="overflow-x-auto">
-      <h2 className="text-2xl font-semibold mb-4">Payroll Requests</h2>
-      <table className="table min-w-full bg-white rounded shadow">
+    <div className="overflow-x-auto rounded-md">
+      <h2 className="text-2xl font-semibold mb-4">Payment Requests</h2>
+      <table className="table min-w-full bg-white rounded-md shadow">
         <thead className="bg-blue-600 text-white">
           <tr>
             <th className="p-3 text-left">Employee</th>
             <th className="p-3 text-left">Salary</th>
-            <th className="p-3 text-left">Month</th>
             <th className="p-3 text-left">Year</th>
+            <th className="p-3 text-left">Month</th>
             <th className="p-3 text-left">Requested By</th>
             <th className="p-3 text-left">Payment Date</th>
             <th className="p-3 text-left">Pay</th>
@@ -43,9 +43,9 @@ const Payroll = () => {
           {paymentRequests.map((req) => (
             <tr key={req._id}>
               <td className="p-3">{req.name}</td>
-              <td className="p-3">{req.salary}৳</td>
-              <td className="p-3">{req.month}</td>
+              <td className="p-3">${req.salary}</td>
               <td className="p-3">{req.year}</td>
+              <td className="p-3">{req.month}</td>
               <td className="p-3">{req.requestedBy}</td>
               <td className="p-3">
                 {req.paymentDate

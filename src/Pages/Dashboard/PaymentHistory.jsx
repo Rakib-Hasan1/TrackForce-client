@@ -32,8 +32,9 @@ const PaymentHistory = () => {
         <thead className="bg-blue-600 text-white">
           <tr>
             <th>Month, Year</th>
-            <th>Amount</th>
+            <th>Salary</th>
             <th>Transaction ID</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -43,6 +44,9 @@ const PaymentHistory = () => {
               <td>{item.salary}</td>
               <td>
                 {item.status === "paid" ? item.transactionId : item.status}
+              </td>
+              <td>
+                {item.status === "paid" ? "Paid ✅" : "Pending ❌"}
               </td>
             </tr>
           ))}

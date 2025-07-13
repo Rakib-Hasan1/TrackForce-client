@@ -45,7 +45,7 @@ const axiosInstance = useAxios();
   };
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 py-16 px-4 md:px-8">
+    <section className="min-h-screen bg-gray-100 dark:bg-gray-900 py-16 px-4 md:px-8">
       <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Contact Form */}
         <form
