@@ -7,10 +7,11 @@ import LoadingEffect from "../../Components/LoadingEffect";
 const PaymentHistory = () => {
   const { user } = useAuth();
   const [page, setPage] = useState(1);
+  const itemsPerPage = 5;
   const axiosSecure = useAxiosSecure();
 
   const { data: payments = [], isLoading } = useQuery({
-    queryKey: ["paymentHistory", user?.email, page],
+    queryKey: ["paymentHistory", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(
         `/payment-history?email=${user?.email}`
@@ -20,10 +21,14 @@ const PaymentHistory = () => {
     enabled: !!user?.email,
   });
 
-  if (isLoading) return <LoadingEffect></LoadingEffect>;
-  const { totalPages } = payments;
+  if (isLoading) return <LoadingEffect />;
 
-  console.log(payments);
+  // Frontend Pagination Logic
+  const totalPages = Math.ceil(payments.length / itemsPerPage);
+  const paginatedData = payments.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
 
   return (
     <div className="overflow-x-auto">
@@ -38,22 +43,37 @@ const PaymentHistory = () => {
           </tr>
         </thead>
         <tbody>
-          {payments?.map((item) => (
+          {paginatedData.map((item) => (
             <tr key={item._id}>
               <td>{`${item.month}, ${item.year}`}</td>
               <td>{item.salary}</td>
               <td>
                 {item.status === "paid" ? item.transactionId : item.status}
               </td>
-              <td>
-                {item.status === "paid" ? "Paid ✅" : "Pending ❌"}
-              </td>
+              <td>{item.status === "paid" ? "Paid ✅" : "Unpaid ❌"}</td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      {/* Pagination */}
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div className="mt-4 flex justify-center gap-2">
+          {[...Array(totalPages).keys()].map((i) => (
+            <button
+              key={i}
+              onClick={() => setPage(i + 1)}
+              className={`px-3 py-1 border rounded ${
+                page === i + 1
+                  ? "bg-blue-600 text-white"
+                  : "bg-white text-blue-600 border-blue-600 cursor-pointer"
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
-import logo from "../assets/image (3).jpg";
+import site_logo from "../assets/site_logo.png";
 // import { useAuth } from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
-import logo2 from "../assets/user.png";
+import logo2 from '../assets/user.png'
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
@@ -100,8 +100,9 @@ const Navbar = () => {
 
         {/* Logo */}
         <Link to="/">
+        
           <img
-            src={logo}
+            src={site_logo}
             alt="Logo"
             className="h-10 rounded-4xl object-cover ml-2 hover:scale-105 transition-transform"
           />
@@ -123,7 +124,7 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 rounded-full border border-blue-500">
-                <img src={user? user?.photoURL : logo2} alt="User Avatar" />
+                <img src={user?.photoURL || logo2} alt="Profile photo" />
               </div>
             </div>
 

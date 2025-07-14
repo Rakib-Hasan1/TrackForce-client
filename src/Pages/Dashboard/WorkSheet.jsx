@@ -20,7 +20,6 @@ const WorkSheet = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
   } = useForm();
 
   const { data: workData = [] } = useQuery({

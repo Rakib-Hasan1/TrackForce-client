@@ -12,7 +12,7 @@ import {
 } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
-import logo from "../assets/image (3).jpg";
+import site_logo from "../assets/site_logo.png";
 import useUserRole from "../Hooks/useUserRole";
 import LoadingEffect from "../Components/LoadingEffect";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
@@ -42,31 +42,32 @@ const DashboardLayouts = () => {
     return <LoadingEffect></LoadingEffect>;
   }
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
 
   return (
     <div className="min-h-screen flex bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 relative">
       {/* Mobile toggle button */}
       <button
-        className="md:hidden absolute top-4 left-4 z-50 text-2xl"
-        onClick={toggleSidebar}
-      >
-        {isSidebarOpen ? <FaTimes /> : <FaBars />}
-      </button>
+  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+  className="fixed top-4 left-4 z-50 p-2 bg-blue-600 text-white rounded md:hidden"
+>
+  <FaBars />
+</button>
 
       {/* Sidebar */}
       <aside
-  className={`z-40 h-screen w-64 bg-white dark:bg-gray-800 shadow-lg transition-transform duration-300
-  ${isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
-  fixed md:sticky top-0`}
->
+        className={`z-40 h-screen w-64 bg-white dark:bg-gray-800 shadow-lg transition-transform duration-300
+            ${
+              isSidebarOpen
+                ? "translate-x-0"
+                : "-translate-x-full md:translate-x-0"
+            }
+           fixed md:sticky top-0`}
+      >
         <div className="px-6 py-5 text-xl font-semibold border-b border-gray-200 dark:border-gray-700">
           <Link to="/">
             <img
-              src={logo}
-              className="h-14 w-full rounded-4xl object-cover ml-2 hover:scale-105 transition-transform"
+              src={site_logo}
+              className="h-14 ml-6 md:ml-0 hover:scale-105 transition-transform"
               alt="TrackForce Logo"
             />
           </Link>
@@ -160,7 +161,7 @@ const DashboardLayouts = () => {
                   }`
                 }
               >
-                <FaMoneyCheckDollar/>
+                <FaMoneyCheckDollar />
                 Payroll
               </NavLink>
             </>
@@ -177,7 +178,7 @@ const DashboardLayouts = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 w-11/12 mx-auto p-4 md:p-8 overflow-y-auto">
+      <main className="flex-1 w-11/12 mx-auto mt-10 md:pt-0 p-4 md:p-8 overflow-y-auto">
         <Outlet />
       </main>
     </div>
