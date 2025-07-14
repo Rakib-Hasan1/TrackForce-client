@@ -83,7 +83,7 @@ const DashboardLayouts = () => {
             }
           >
             <FaHome />
-            Dashboard Home
+            Home
           </NavLink>
 
           {!roleLoading && role === "employee" && (

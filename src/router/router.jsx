@@ -17,6 +17,7 @@ import AllEmployeeList from "../Pages/Dashboard/AllEmployeeList";
 import AdminRoute from "../Routes/AdminRoutes";
 import Payroll from "../Pages/Dashboard/Payroll";
 import Payment from "../Pages/Dashboard/Payment";
+import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 
 export const router = createBrowserRouter([
   {
@@ -47,13 +48,16 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    // Component: DashboardLayouts,
     element: (
       <PrivateRoute>
         <DashboardLayouts></DashboardLayouts>
       </PrivateRoute>
     ),
     children: [
+      {
+        index: true,
+        Component: DashboardHome,
+      },
       {
         path: "work-sheet",
         Component: WorkSheet,
@@ -64,15 +68,27 @@ export const router = createBrowserRouter([
       },
       {
         path: "employee-list",
-        element: <EmployeeList></EmployeeList>,
+        element: (
+          <HRRoutes>
+            <EmployeeList></EmployeeList>
+          </HRRoutes>
+        ),
       },
       {
         path: "progress",
-        element: <Progress></Progress>,
+        element: (
+          <HRRoutes>
+            <Progress></Progress>
+          </HRRoutes>
+        ),
       },
       {
         path: "/dashboard/employee-list/:id",
-        element: <EmployeeDetails />,
+        element: (
+          <HRRoutes>
+            <EmployeeDetails />
+          </HRRoutes>
+        ),
       },
       {
         path: "all-employee",
