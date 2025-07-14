@@ -75,7 +75,7 @@ const AllEmployeeList = () => {
   if (isLoading) return <LoadingEffect />;
 
   return (
-    <div className="p-4">
+    <div>
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-2xl font-bold">All Verified Employees</h2>
         <button

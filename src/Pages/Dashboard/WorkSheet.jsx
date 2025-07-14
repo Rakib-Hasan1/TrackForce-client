@@ -103,7 +103,7 @@ const WorkSheet = () => {
   };
 
   return (
-    <div className="w-11/12 mx-auto">
+    <div>
       <h2 className="text-2xl font-semibold text-blue-700 mb-6">
         📝 Work Sheet
       </h2>

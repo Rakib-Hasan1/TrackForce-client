@@ -71,7 +71,7 @@ const DashboardLayouts = () => {
             />
           </Link>
         </div>
-        <nav className="min-h-[90vh] flex flex-col gap-1 p-4">
+        <nav className="flex flex-col gap-1 p-4">
           <NavLink
             to="/dashboard"
             end
