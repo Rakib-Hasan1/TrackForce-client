@@ -25,33 +25,44 @@ const DashboardLayouts = () => {
   console.log(role);
 
   const handleLogout = async () => {
-    try {
-      await logoutUser();
-      Swal.fire({
-        icon: "success",
-        title: "Logged out successfully!",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    } catch (error) {
-      console.error("Logout error:", error);
-      Swal.fire("Logout Failed", error.message, "error");
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You will be logged out!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, logout",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await logoutUser();
+        Swal.fire({
+          icon: "success",
+          title: "Logged out successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } catch (error) {
+        console.error("Logout error:", error);
+        Swal.fire("Logout Failed", error.message, "error");
+      }
     }
   };
   if (roleLoading) {
     return <LoadingEffect></LoadingEffect>;
   }
 
-
   return (
     <div className="min-h-screen flex bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 relative">
       {/* Mobile toggle button */}
       <button
-  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-  className="fixed top-4 left-4 z-50 p-2 bg-blue-600 text-white rounded md:hidden"
->
-  <FaBars />
-</button>
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        className="fixed top-4 left-4 z-50 p-2 bg-blue-600 text-white rounded md:hidden"
+      >
+        <FaBars />
+      </button>
 
       {/* Sidebar */}
       <aside

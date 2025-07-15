@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
 import useAxios from "../Hooks/useAxios";
-import { toast } from "react-toastify"; // For user-friendly messages
+import { toast } from "react-toastify";
 
 const SocialLogin = () => {
   const { googleSignIn } = useAuth();
@@ -12,7 +12,7 @@ const SocialLogin = () => {
   const [loading, setLoading] = useState(false);
 
   const handleGoogleSignIn = async () => {
-    setLoading(true); // Start loading
+    setLoading(true);
 
     try {
       const result = await googleSignIn();
@@ -22,9 +22,9 @@ const SocialLogin = () => {
         name: user?.displayName,
         email: user?.email,
         photo: user?.photoURL,
-        bank_account_no: "635645656541", // Example value, can be dynamic
-        salary: 20000, // Example value
-        designation: "Intern frontend developer", // Example value
+        bank_account_no: "635645656541",
+        salary: 20000,
+        designation: "Web developer",
         role: "employee",
         isVerified: false,
       };
@@ -32,16 +32,14 @@ const SocialLogin = () => {
       const userRes = await axiosInstance.post("/peoples", userInfo);
       console.log("User updated info", userRes.data);
 
-      // Successful login
       toast.success("Login successful!");
 
-      // Navigate to dashboard or profile page
-      navigate("/"); // Replace `/dashboard` with your target route
+      navigate("/");
     } catch (error) {
       console.error("Error during Google sign-in", error);
       toast.error("Google login failed. Please try again.");
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
 

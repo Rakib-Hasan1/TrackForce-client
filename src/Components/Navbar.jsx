@@ -4,12 +4,24 @@ import site_logo from "../assets/site_logo.png";
 // import { useAuth } from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
-import logo2 from '../assets/user.png'
+import logo2 from "../assets/user.png";
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
 
   const handleLogout = async () => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You will be logged out!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, logout",
+    });
+
+    if (!result.isConfirmed) return;
+
     try {
       await logoutUser();
       Swal.fire({
@@ -23,7 +35,6 @@ const Navbar = () => {
       Swal.fire("Logout Failed", error.message, "error");
     }
   };
-
 
   const navLinks = (
     <>
@@ -100,7 +111,6 @@ const Navbar = () => {
 
         {/* Logo */}
         <Link to="/">
-        
           <img
             src={site_logo}
             alt="Logo"
