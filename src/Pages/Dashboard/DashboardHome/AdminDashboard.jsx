@@ -53,7 +53,6 @@ const AdminDashboard = () => {
   const totalEmployees = employees.length;
   const totalPayments = payments.length;
   const totalSalaryPaid = payments.reduce((sum, p) => sum + (Number(p.salary) || 0), 0);
-  console.log(totalSalaryPaid);
   const totalMessages = messages.length;
 
   return (

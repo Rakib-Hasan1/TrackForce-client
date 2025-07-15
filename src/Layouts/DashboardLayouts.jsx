@@ -22,7 +22,6 @@ const DashboardLayouts = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { role, roleLoading } = useUserRole();
 
-  console.log(role);
 
   const handleLogout = async () => {
     const result = await Swal.fire({

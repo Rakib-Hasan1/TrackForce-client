@@ -23,7 +23,6 @@ const Registration = () => {
       return res.data;
     },
     onSuccess: () => {
-      console.log("User saved to DB");
     },
     onError: (err) => {
       console.error("DB save error:", err);

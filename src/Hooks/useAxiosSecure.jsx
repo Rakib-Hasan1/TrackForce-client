@@ -3,20 +3,17 @@ import React from "react";
 import useAuth from "./useAuth";
 
 const axiosSecure = axios.create({
-  baseURL: `http://localhost:5000`,
+  baseURL: `https://track-force-server.vercel.app`,
 });
 
 const useAxiosSecure = () => {
   const { user } = useAuth();
-  axiosSecure.interceptors.request.use(
-    (config) => {
+  axiosSecure.interceptors.request.use((config) => {
+    if (user?.accessToken) {
       config.headers.Authorization = `Bearer ${user.accessToken}`;
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
     }
-  );
+    return config;
+  });
   return axiosSecure;
 };
 

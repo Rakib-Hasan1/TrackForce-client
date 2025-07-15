@@ -12,8 +12,7 @@ const EmployeeList = () => {
   const queryClient = useQueryClient();
   const [showPayModal, setShowPayModal] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
-  
-  console.log(selectedEmployee);
+
 
   const { data: peoplesData = [], isLoading } = useQuery({
     queryKey: ["completedDeliveries"],

@@ -21,7 +21,6 @@ const Login = () => {
       setFirebaseError("");
       await signInUser(email, password)
         .then((result) => {
-          console.log(result.user);
           Swal.fire({
             title: "Login Successful!",
             icon: "success",

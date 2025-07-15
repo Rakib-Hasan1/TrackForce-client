@@ -53,7 +53,6 @@ const PaymentForm = () => {
       }
 
       setError("");
-      console.log(paymentMethod);
       // Step 1: Create payment intent
       const res = await axiosSecure.post("/create-payment-intent", {
         amountInCents,

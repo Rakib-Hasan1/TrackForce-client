@@ -45,7 +45,6 @@ const Progress = () => {
     enabled: !!selectedMonth, // only run when month is selected
   });
 
-  console.log(workRecords);
 
   return (
     <div className="">

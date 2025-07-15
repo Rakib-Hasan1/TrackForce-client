@@ -30,7 +30,7 @@ const SocialLogin = () => {
       };
 
       const userRes = await axiosInstance.post("/peoples", userInfo);
-      console.log("User updated info", userRes.data);
+
 
       toast.success("Login successful!");
 
