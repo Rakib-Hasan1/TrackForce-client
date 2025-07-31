@@ -18,7 +18,7 @@ https://github.com/Rakib-Hasan1/TrackForce-server
 - **Backend:** Express.js, MongoDB (native driver), JWT Auth
 - **State & Data:** React Query (TanStack Query), Axios
 - **Payment:** Stripe Integration (for Admin payments)
-- **Deployment:** Vercel (Frontend), Render/Hosted Backend
+- **Deployment:** Vercel (back-end), Firebase (Front-end)
 
 ---
 
