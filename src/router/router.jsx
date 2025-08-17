@@ -18,6 +18,7 @@ import AdminRoute from "../Routes/AdminRoutes";
 import Payroll from "../Pages/Dashboard/Payroll";
 import Payment from "../Pages/Dashboard/Payment";
 import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
+import FAQ from "../Pages/FAQ/FAQ";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "faq",
+        Component: FAQ,
       },
       {
         path: "/contact-us",

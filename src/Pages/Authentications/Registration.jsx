@@ -8,12 +8,14 @@ import { useMutation } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 import SocialLogin from "../../Components/SocialLogin";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const imageHostKey = import.meta.env.VITE_IMGBB_API_KEY;
 
 const Registration = () => {
   const { createUser, updateUserProfile } = useAuth();
   const [firebaseError, setFirebaseError] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
@@ -143,8 +145,9 @@ const Registration = () => {
           {/* Password */}
           <div>
             <label className="block text-sm font-medium">Password</label>
-            <input
-              type="password"
+            <div className="relative">
+              <input
+              type={passwordVisible ? "text" : "password"}
               {...register("password", {
                 required: "Password is required",
                 minLength: {
@@ -160,6 +163,8 @@ const Registration = () => {
               className="w-full mt-1 px-4 py-2 border rounded-lg focus:outline-blue-500"
               placeholder="•••••••"
             />
+            <button className="absolute right-4 top-4 cursor-pointer" type="button" onClick={()=>setPasswordVisible(!passwordVisible)}>{passwordVisible ? <FaEyeSlash /> : <FaEye />}</button>
+            </div>
             {errors.password && (
               <p className="text-red-600 text-sm">{errors.password.message}</p>
             )}

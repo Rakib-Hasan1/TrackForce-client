@@ -62,6 +62,18 @@ const Navbar = () => {
           Contact Us
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/faq"
+          className={({ isActive }) =>
+            `transition-colors duration-200 ${
+              isActive ? "text-blue-700 font-semibold" : "text-gray-700"
+            } hover:text-blue-500`
+          }
+        >
+          FAQ
+        </NavLink>
+      </li>
       {user && (
         <li>
           <NavLink

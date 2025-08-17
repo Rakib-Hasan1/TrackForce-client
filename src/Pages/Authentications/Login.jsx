@@ -4,10 +4,12 @@ import { useNavigate, Link } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import SocialLogin from "../../Components/SocialLogin";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const { signInUser } = useAuth();
   const [firebaseError, setFirebaseError] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
   const {
@@ -73,12 +75,16 @@ const Login = () => {
           {/* Password */}
           <div>
             <label className="block text-sm font-medium">Password</label>
-            <input
-              type="password"
-              {...register("password", { required: "Password is required" })}
-              className="w-full mt-1 px-4 py-2 border rounded-lg focus:outline-blue-500"
-              placeholder="•••••••"
-            />
+            <div className="relative">
+              <input
+                type={passwordVisible ? "text" : "password"}
+                {...register("password", { required: "Password is required" })}
+                className="w-full mt-1 px-4 py-2 border rounded-lg focus:outline-blue-500"
+                placeholder="•••••••"
+
+              />
+              <button onClick={()=>setPasswordVisible(!passwordVisible)} className="absolute top-4 right-4 cursor-pointer">{passwordVisible ? <FaEyeSlash /> : <FaEye />}</button>
+            </div>
             {errors.password && (
               <p className="text-red-600 text-sm mt-1">
                 {errors.password.message}
