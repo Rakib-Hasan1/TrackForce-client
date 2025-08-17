@@ -43,7 +43,7 @@ const Testimonials = () => {
           loop={true}
           autoplay={{ delay: 4000 }}
           onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-          className="max-w-5xl mx-auto"
+          className="max-w-6xl mx-auto"
         >
           {testimonials.map((t, index) => {
             const isActive = index === activeIndex;
@@ -52,7 +52,7 @@ const Testimonials = () => {
               <SwiperSlide key={index}>
                 <div
                   className={`
-                    transition-all duration-500 p-6 rounded-xl m-2
+                    transition-all duration-500 p-6 rounded-lg m-2 lg:m-6 h-[350px]
                     ${isActive
                       ? "scale-100 blur-0 shadow-xl bg-base-100"
                       : "scale-90 blur-sm bg-base-200"

@@ -92,8 +92,8 @@ const AllEmployeeList = () => {
       {/* Table View */}
       {isTableView ? (
         <div className="overflow-x-auto">
-          <table className="table w-full bg-base-100 rounded shadow">
-            <thead className="">
+          <table className="table w-full bg-base-100 rounded-md">
+            <thead className="text-black">
               <tr>
                 <th className="p-3 text-left">Name</th>
                 <th className="p-3 text-left">Designation</th>

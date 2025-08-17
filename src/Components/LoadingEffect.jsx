@@ -3,7 +3,7 @@ import React from "react";
 
 const LoadingEffect = () => {
   return (
-    <div className="flex items-center justify-center h-screen bg-base-100 dark:bg-gray-900">
+    <div className="flex items-center justify-center h-screen">
       <div className="flex flex-col items-center space-y-4">
         {/* Animated Dots */}
         <div className="flex space-x-2">

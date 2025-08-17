@@ -7,7 +7,7 @@ const Footer = () => {
 
         <div>
           <h2 className="text-xl font-bold text-base-content mozilla">TrackForce</h2>
-          <p className="mt-2 text-sm">
+          <p className="mt-2 text-sm max-w-xs">
             TrackForce is an efficient employee management platform to track
             work hours, manage payroll, and streamline your HR processes.
           </p>
