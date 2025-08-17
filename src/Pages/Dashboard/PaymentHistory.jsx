@@ -13,9 +13,7 @@ const PaymentHistory = () => {
   const { data: payments = [], isLoading } = useQuery({
     queryKey: ["paymentHistory", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(
-        `/payment-history?email=${user?.email}`
-      );
+      const res = await axiosSecure.get(`/payment-history?email=${user?.email}`);
       return res.data;
     },
     enabled: !!user?.email,
@@ -23,7 +21,6 @@ const PaymentHistory = () => {
 
   if (isLoading) return <LoadingEffect />;
 
-  // Frontend Pagination Logic
   const totalPages = Math.ceil(payments.length / itemsPerPage);
   const paginatedData = payments.slice(
     (page - 1) * itemsPerPage,
@@ -31,28 +28,42 @@ const PaymentHistory = () => {
   );
 
   return (
-    <div className="overflow-x-auto">
-      <h2 className="text-xl font-semibold mb-4">Payment History</h2>
-      <table className="table min-w-full bg-white shadow-md rounded-md overflow-hidden">
+    <div className="overflow-x-auto p-4 bg-base-100 rounded-lg shadow-md">
+      <h2 className="text-2xl font-semibold mb-4 text-base-content dark:text-base-100">
+        Payment History
+      </h2>
+
+      <table className="table w-full bg-white dark:bg-gray-800 rounded-md shadow overflow-hidden">
         <thead className="bg-blue-600 text-white">
           <tr>
-            <th>Month, Year</th>
-            <th>Salary</th>
-            <th>Transaction ID</th>
-            <th>Status</th>
+            <th className="p-3">Month, Year</th>
+            <th className="p-3">Salary</th>
+            <th className="p-3">Transaction ID</th>
+            <th className="p-3">Status</th>
           </tr>
         </thead>
         <tbody>
           {paginatedData.map((item) => (
-            <tr key={item._id}>
-              <td>{`${item.month}, ${item.year}`}</td>
-              <td>{item.salary}</td>
-              <td>
-                {item.status === "paid" ? item.transactionId : item.status}
+            <tr key={item._id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
+              <td className="p-3">{`${item.month}, ${item.year}`}</td>
+              <td className="p-3">${item.salary}</td>
+              <td className="p-3">{item.status === "paid" ? item.transactionId : item.status}</td>
+              <td className="p-3">
+                {item.status === "paid" ? (
+                  <span className="text-green-600 font-semibold">Paid ✅</span>
+                ) : (
+                  <span className="text-red-500 font-semibold">Unpaid ❌</span>
+                )}
               </td>
-              <td>{item.status === "paid" ? "Paid ✅" : "Unpaid ❌"}</td>
             </tr>
           ))}
+          {paginatedData.length === 0 && (
+            <tr>
+              <td colSpan="4" className="text-center text-gray-500 py-4">
+                No payment records found.
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
 
@@ -63,11 +74,8 @@ const PaymentHistory = () => {
             <button
               key={i}
               onClick={() => setPage(i + 1)}
-              className={`px-3 py-1 border rounded ${
-                page === i + 1
-                  ? "bg-blue-600 text-white"
-                  : "bg-white text-blue-600 border-blue-600 cursor-pointer"
-              }`}
+              className={`btn btn-sm ${page === i + 1 ? "btn-primary" : "btn-outline"
+                }`}
             >
               {i + 1}
             </button>

@@ -10,7 +10,7 @@ const PaymentForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false); // ✅ loading state
+  const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
@@ -32,83 +32,76 @@ const PaymentForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!stripe || !elements) return;
 
     const card = elements.getElement(CardElement);
     if (!card) return;
 
-    setLoading(true); // ✅ disable button
+    setLoading(true);
 
     try {
-      const { error, paymentMethod } = await stripe.createPaymentMethod({
+      const { error: stripeError, paymentMethod } = await stripe.createPaymentMethod({
         type: "card",
         card,
       });
 
-      if (error) {
-        setError(error.message);
+      if (stripeError) {
+        setError(stripeError.message);
         setLoading(false);
         return;
       }
 
       setError("");
-      // Step 1: Create payment intent
       const res = await axiosSecure.post("/create-payment-intent", {
         amountInCents,
         id,
       });
       const clientSecret = res.data.clientSecret;
 
-      // Step 2: Confirm payment
       const result = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card,
           billing_details: {
-            name: "Rakib Hasan", // You can use user.name if logged-in
+            name: "Rakib Hasan",
           },
         },
       });
 
       if (result.error) {
         setError(result.error.message);
-      } else {
-        setError("");
-        if (result.paymentIntent.status === "succeeded") {
-          const paymentData = {
-            transactionId: result.paymentIntent.id,
-          };
+      } else if (result.paymentIntent.status === "succeeded") {
+        const paymentData = {
+          transactionId: result.paymentIntent.id,
+        };
+        await axiosSecure.patch(`/payment-requests/${id}/pay`, paymentData);
 
-          // Step 3: Update backend status
-          await axiosSecure.patch(`/payment-requests/${id}/pay`, paymentData);
+        await Swal.fire({
+          title: "Payment Successful!",
+          text: `Transaction ID: ${result.paymentIntent.id}`,
+          icon: "success",
+          confirmButtonText: "Okay",
+        });
 
-          // Step 4: Show success modal
-          await Swal.fire({
-            title: "Payment Successful!",
-            text: `Transaction ID: ${result.paymentIntent.id}`,
-            icon: "success",
-            confirmButtonText: "Okay",
-          });
-
-          // Step 5: Redirect
-          navigate("/dashboard/payroll");
-        }
+        navigate("/dashboard/payroll");
       }
     } catch (err) {
       console.error("Payment error:", err);
-      setError("Something went wrong or employee may get the salary of this month!");
+      setError("Something went wrong or employee may already have received this month's salary!");
     } finally {
-      setLoading(false); // ✅ enable button again
+      setLoading(false);
     }
   };
 
   return (
-    <div>
+    <div className="flex justify-center mt-10">
       <form
         onSubmit={handleSubmit}
-        className="space-y-4 bg-white p-6 rounded-xl shadow-md w-full max-w-md mx-auto"
+        className="bg-base-100 dark:bg-base-200 p-6 rounded-xl shadow-lg w-full max-w-md space-y-4"
       >
-        <CardElement className="p-2 border border-blue-300 rounded" />
+        <h2 className="text-xl font-semibold text-center mb-2 text-base-content dark:text-base-100">
+          Pay Employee
+        </h2>
+        <CardElement className="p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800" />
         <button
           type="submit"
           disabled={!stripe || loading}
@@ -116,7 +109,9 @@ const PaymentForm = () => {
         >
           {loading ? "Processing..." : `Pay $${amount}`}
         </button>
-        {error && <p className="text-red-500 text-xl text-center">{error}</p>}
+        {error && (
+          <p className="text-red-500 text-center font-medium">{error}</p>
+        )}
       </form>
     </div>
   );

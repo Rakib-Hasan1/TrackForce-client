@@ -75,9 +75,11 @@ const AllEmployeeList = () => {
   if (isLoading) return <LoadingEffect />;
 
   return (
-    <div>
+    <div className="space-y-6">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-bold">All Verified Employees</h2>
+        <h2 className="text-2xl font-bold text-blue-500">
+          All Verified Employees
+        </h2>
         <button
           onClick={() => setIsTableView(!isTableView)}
           className="btn btn-sm btn-primary flex items-center gap-2"
@@ -90,8 +92,8 @@ const AllEmployeeList = () => {
       {/* Table View */}
       {isTableView ? (
         <div className="overflow-x-auto">
-          <table className="table w-full bg-white shadow rounded">
-            <thead className="bg-blue-600 text-white">
+          <table className="table w-full bg-base-200 rounded shadow">
+            <thead className="">
               <tr>
                 <th className="p-3 text-left">Name</th>
                 <th className="p-3 text-left">Designation</th>
@@ -103,7 +105,7 @@ const AllEmployeeList = () => {
             </thead>
             <tbody>
               {employees.map((person) => (
-                <tr key={person._id}>
+                <tr key={person._id} className="">
                   <td className="p-3">{person.name}</td>
                   <td className="p-3">{person.designation}</td>
                   <td className="p-3 capitalize">{person.role}</td>
@@ -132,7 +134,7 @@ const AllEmployeeList = () => {
                         Make HR
                       </button>
                     ) : (
-                      <span className="text-gray-400">—</span>
+                      <span>—</span>
                     )}
                   </td>
                   <td className="p-3">
@@ -144,14 +146,14 @@ const AllEmployeeList = () => {
                         Fire
                       </button>
                     ) : (
-                      <span className="text-red-500 font-semibold">Fired</span>
+                      <span className="text-error font-semibold">Fired</span>
                     )}
                   </td>
                 </tr>
               ))}
               {!employees.length && (
                 <tr>
-                  <td colSpan="6" className="text-center text-gray-500 font-semibold py-4">
+                  <td colSpan="6" className="text-center font-semibold py-4">
                     No verified employees found.
                   </td>
                 </tr>
@@ -163,7 +165,7 @@ const AllEmployeeList = () => {
         // Card View
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {employees.map((person) => (
-            <div key={person._id} className="p-4 bg-white shadow rounded space-y-2">
+            <div key={person._id} className="p-4 bg-base-100 shadow rounded space-y-2">
               <h3 className="text-lg font-bold">{person.name}</h3>
               <p className="text-sm">Designation: {person.designation}</p>
               <p className="text-sm capitalize">Role: {person.role}</p>
@@ -190,7 +192,7 @@ const AllEmployeeList = () => {
                     Make HR
                   </button>
                 ) : (
-                  <span className="text-gray-400 text-sm">Already HR</span>
+                  <span className="text-gray-400 dark:text-gray-300 text-sm">Already HR</span>
                 )}
 
                 {!person.isFired ? (
@@ -201,7 +203,7 @@ const AllEmployeeList = () => {
                     Fire
                   </button>
                 ) : (
-                  <span className="text-red-500 font-semibold text-sm">Fired</span>
+                  <span className="text-error font-semibold text-sm">Fired</span>
                 )}
               </div>
             </div>

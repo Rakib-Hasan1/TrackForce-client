@@ -7,7 +7,7 @@ import LoadingEffect from "../../Components/LoadingEffect";
 import useAxios from "../../Hooks/useAxios";
 
 const ContactUs = () => {
-const axiosInstance = useAxios();
+  const axiosInstance = useAxios();
   const {
     register,
     handleSubmit,
@@ -45,21 +45,21 @@ const axiosInstance = useAxios();
   };
 
   return (
-    <section className="min-h-screen bg-gray-100 dark:bg-gray-900 py-16 px-4 md:px-8">
+    <section className="min-h-screen bg-base-200 text-base-content py-16 px-4 md:px-8">
       <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Contact Form */}
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md"
+          className="bg-base-100 p-8 rounded-lg shadow-md"
         >
-          <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">
+          <h2 className="text-2xl font-semibold mb-6 text-base-content">
             Contact Us
           </h2>
 
           <div className="mb-4">
             <label
               htmlFor="email"
-              className="block mb-2 font-medium text-gray-700 dark:text-gray-300"
+              className="block mb-2 font-medium text-base-content/80"
             >
               Email Address
             </label>
@@ -67,9 +67,8 @@ const axiosInstance = useAxios();
               id="email"
               type="email"
               placeholder="your.email@example.com"
-              className={`w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                errors.email ? "border-red-500" : "border-gray-300"
-              } dark:bg-gray-700 dark:text-white`}
+              className={`w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-primary ${errors.email ? "border-error" : "border-base-300"
+                } bg-base-100 text-base-content`}
               {...register("email", {
                 required: "Email is required",
                 pattern: {
@@ -79,16 +78,14 @@ const axiosInstance = useAxios();
               })}
             />
             {errors.email && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.email.message}
-              </p>
+              <p className="text-error text-sm mt-1">{errors.email.message}</p>
             )}
           </div>
 
           <div className="mb-6">
             <label
               htmlFor="message"
-              className="block mb-2 font-medium text-gray-700 dark:text-gray-300"
+              className="block mb-2 font-medium text-base-content/80"
             >
               Message
             </label>
@@ -96,9 +93,8 @@ const axiosInstance = useAxios();
               id="message"
               rows="5"
               placeholder="Your message here..."
-              className={`w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                errors.message ? "border-red-500" : "border-gray-300"
-              } dark:bg-gray-700 dark:text-white`}
+              className={`w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-primary ${errors.message ? "border-error" : "border-base-300"
+                } bg-base-100 text-base-content`}
               {...register("message", {
                 required: "Message is required",
                 minLength: {
@@ -108,16 +104,14 @@ const axiosInstance = useAxios();
               })}
             />
             {errors.message && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.message.message}
-              </p>
+              <p className="text-error text-sm mt-1">{errors.message.message}</p>
             )}
           </div>
 
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded font-semibold transition"
+            className="w-full btn btn-primary"
           >
             {isSubmitting ? "Sending..." : "Send Message"}
           </button>
@@ -125,22 +119,18 @@ const axiosInstance = useAxios();
         </form>
 
         {/* Dummy Company Info */}
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md flex flex-col justify-center">
-          <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">
+        <div className="bg-base-100 p-8 rounded-lg shadow-md flex flex-col justify-center">
+          <h3 className="text-xl font-semibold mb-4 text-base-content">
             Our Office
           </h3>
-          <p className="text-gray-600 dark:text-gray-300 mb-2">
+          <p className="text-base-content/70 mb-2">
             123 TrackForce Avenue
             <br />
             Dhaka, Bangladesh
           </p>
-          <p className="text-gray-600 dark:text-gray-300 mb-2">
-            Phone: +880 1234 567890
-          </p>
-          <p className="text-gray-600 dark:text-gray-300 mb-2">
-            Email: support@trackforce.com
-          </p>
-          <p className="text-gray-600 dark:text-gray-300 mt-4 italic">
+          <p className="text-base-content/70 mb-2">Phone: +880 1234 567890</p>
+          <p className="text-base-content/70 mb-2">Email: support@trackforce.com</p>
+          <p className="text-base-content/70 mt-4 italic">
             We appreciate your feedback and are here to help you.
           </p>
         </div>

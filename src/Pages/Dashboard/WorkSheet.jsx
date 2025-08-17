@@ -16,11 +16,7 @@ const WorkSheet = () => {
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [editingItem, setEditingItem] = useState(null);
-  const {
-    register,
-    handleSubmit,
-    reset,
-  } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const { data: workData = [] } = useQuery({
     queryKey: ["works", user?.email],
@@ -38,7 +34,7 @@ const WorkSheet = () => {
     },
     onSuccess: () => {
       Swal.fire("Added!", "Work added successfully.", "success");
-      queryClient.invalidateQueries(["users", user?.email]);
+      queryClient.invalidateQueries(["works", user?.email]);
       reset();
     },
   });
@@ -49,7 +45,7 @@ const WorkSheet = () => {
     },
     onSuccess: () => {
       Swal.fire("Updated!", "Work updated successfully.", "success");
-      queryClient.invalidateQueries(["users", user?.email]);
+      queryClient.invalidateQueries(["works", user?.email]);
       setEditingItem(null);
       reset();
     },
@@ -81,7 +77,6 @@ const WorkSheet = () => {
       hours: parseFloat(data.hours),
       date: selectedDate.toISOString(),
     };
-
     addWork(workItem);
   };
 
@@ -102,18 +97,16 @@ const WorkSheet = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-semibold text-blue-700 mb-6">
-        📝 Work Sheet
-      </h2>
+    <div className="p-4">
+      <h2 className="text-2xl font-semibold text-primary mb-6">📝 Work Sheet</h2>
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col md:flex-row gap-4 items-center bg-white p-4 rounded-md shadow mb-6"
+        className="flex flex-col md:flex-row gap-4 items-center bg-base-200 p-4 rounded-lg shadow mb-6"
       >
         <select
           {...register("task", { required: true })}
-          className="select border border-blue-300 px-4 py-2 rounded-md w-full md:w-1/4 cursor-pointer"
+          className="select select-bordered w-full md:w-1/4"
           defaultValue=""
         >
           <option value="" disabled>
@@ -131,44 +124,39 @@ const WorkSheet = () => {
           type="number"
           {...register("hours", { required: true, min: 1 })}
           placeholder="Hours Worked"
-          className="select border border-blue-300 px-4 py-2 rounded-md w-full md:w-1/4"
+          className="input input-bordered w-full md:w-1/4"
         />
 
         <DatePicker
           selected={selectedDate}
           onChange={(date) => setSelectedDate(date)}
-          className="border border-blue-300 px-4 py-2 rounded-md w-full"
+          className="input input-bordered w-full"
           placeholderText="Select a date"
           dateFormat="yyyy-MM-dd"
         />
 
-        <button className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition w-full md:w-auto cursor-pointer">
-          Submit
-        </button>
+        <button className="btn btn-primary w-full md:w-auto">Submit</button>
       </form>
 
       {/* works data */}
-
       <div className="overflow-x-auto">
-        <table className="table min-w-full bg-white shadow-md rounded-md overflow-hidden">
-          <thead className="bg-blue-600 text-white">
+        <table className="table table-compact w-full bg-base-200 rounded-lg shadow-md overflow-hidden">
+          <thead className="bg-primary text-primary-content">
             <tr>
-              <th className="p-3 text-left">Task</th>
-              <th className="p-3 text-left">Hours</th>
-              <th className="p-3 text-left">Date</th>
-              <th className="p-3 text-left">Edit</th>
-              <th className="p-3 text-left">Delete</th>
+              <th>Task</th>
+              <th>Hours</th>
+              <th>Date</th>
+              <th>Edit</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
             {workData.map((work) => (
-              <tr key={work._id}>
-                <td className="p-3">{work.task}</td>
-                <td className="p-3">{work.hours}</td>
-                <td className="p-3">
-                  {new Date(work.date).toLocaleDateString()}
-                </td>
-                <td className="p-3 text-left space-x-2">
+              <tr key={work._id} className="hover:bg-base-300">
+                <td>{work.task}</td>
+                <td>{work.hours}</td>
+                <td>{new Date(work.date).toLocaleDateString()}</td>
+                <td>
                   <button
                     onClick={() => handleEdit(work)}
                     className="btn btn-sm btn-outline btn-success"
@@ -179,7 +167,7 @@ const WorkSheet = () => {
                 <td>
                   <button
                     onClick={() => handleDelete(work._id)}
-                    className="btn btn-error btn-sm btn-outline"
+                    className="btn btn-sm btn-error btn-outline"
                   >
                     ❌ Delete
                   </button>
@@ -188,10 +176,7 @@ const WorkSheet = () => {
             ))}
             {!workData.length && (
               <tr>
-                <td
-                  colSpan="5"
-                  className="font-semibold text-2xl text-center py-4 text-gray-500"
-                >
+                <td colSpan="5" className="text-center text-gray-400 py-4">
                   No data found.
                 </td>
               </tr>
@@ -230,18 +215,15 @@ const WorkSheet = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
-                  >
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-base-200 p-6 shadow-xl transition-all">
+                  <Dialog.Title className="text-lg font-medium text-primary-content">
                     Edit Work
                   </Dialog.Title>
                   <form onSubmit={handleEditSubmit} className="mt-4 space-y-4">
                     <select
                       name="task"
                       defaultValue={editingItem?.task}
-                      className="w-full px-4 py-2 border rounded-md"
+                      className="select select-bordered w-full"
                       required
                     >
                       <option value="Sales">Sales</option>
@@ -257,14 +239,14 @@ const WorkSheet = () => {
                       type="number"
                       defaultValue={editingItem?.hours}
                       placeholder="Hours Worked"
-                      className="w-full px-4 py-2 border rounded-md"
+                      className="input input-bordered w-full"
                       required
                     />
 
                     <DatePicker
                       selected={selectedDate}
                       onChange={(date) => setSelectedDate(date)}
-                      className="w-full px-4 py-2 border rounded-md"
+                      className="input input-bordered w-full"
                       dateFormat="yyyy-MM-dd"
                     />
 
@@ -272,14 +254,11 @@ const WorkSheet = () => {
                       <button
                         type="button"
                         onClick={() => setEditingItem(null)}
-                        className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"
+                        className="btn btn-outline"
                       >
                         Cancel
                       </button>
-                      <button
-                        type="submit"
-                        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-                      >
+                      <button type="submit" className="btn btn-primary">
                         Update
                       </button>
                     </div>

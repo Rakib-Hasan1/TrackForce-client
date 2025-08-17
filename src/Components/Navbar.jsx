@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import site_logo from "../assets/site_logo.png";
 // import { useAuth } from "../hooks/useAuth";
@@ -42,8 +42,7 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            `transition-colors duration-200 ${
-              isActive ? "text-blue-700 font-semibold" : "text-gray-700"
+            `transition-colors duration-200 ${isActive ? "text-blue-700 font-semibold" : "text-base-content"
             } hover:text-blue-500`
           }
         >
@@ -52,41 +51,52 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/contact-us"
-          className={({ isActive }) =>
-            `transition-colors duration-200 ${
-              isActive ? "text-blue-700 font-semibold" : "text-gray-700"
-            } hover:text-blue-500`
-          }
-        >
-          Contact Us
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
           to="/faq"
           className={({ isActive }) =>
-            `transition-colors duration-200 ${
-              isActive ? "text-blue-700 font-semibold" : "text-gray-700"
+            `transition-colors duration-200 ${isActive ? "text-blue-700 font-semibold" : "text-base-content"
             } hover:text-blue-500`
           }
         >
           FAQ
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/contact-us"
+          className={({ isActive }) =>
+            `transition-colors duration-200 ${isActive ? "text-blue-700 font-semibold" : "text-base-content"
+            } hover:text-blue-500`
+          }
+        >
+          Contact Us
+        </NavLink>
+      </li>
+
       {user && (
-        <li>
-          <NavLink
-            to="/dashboard"
-            className={({ isActive }) =>
-              `transition-colors duration-200 ${
-                isActive ? "text-blue-700 font-semibold" : "text-gray-700"
-              } hover:text-blue-500`
-            }
-          >
-            Dashboard
-          </NavLink>
-        </li>
+        <>
+          <li>
+            <NavLink
+              to="/profile"
+              className={({ isActive }) =>
+                `transition-colors duration-200 ${isActive ? "text-blue-700 font-semibold" : "text-base-content"
+                } hover:text-blue-500`
+              }
+            >
+              My Profile
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard"
+              className={({ isActive }) =>
+                `transition-colors duration-200 ${isActive ? "text-blue-700 font-semibold" : "text-base-content"
+                } hover:text-blue-500`
+              }
+            >
+              Dashboard
+            </NavLink>
+          </li>
+        </>
       )}
     </>
   );

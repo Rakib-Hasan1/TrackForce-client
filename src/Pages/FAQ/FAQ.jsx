@@ -2,7 +2,7 @@ import React from 'react';
 
 const FAQ = () => {
     return (
-        <div className='w-11/12 mx-auto pt-16'>
+        <div className='w-11/12 lg:max-w-7/12 mx-auto pt-16'>
             <div className="collapse bg-base-100 border border-base-300">
                 <input type="radio" name="my-accordion-1" defaultChecked />
                 <div className="collapse-title font-semibold">How do I create an account on TrackForce?</div>

@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router";
+import { createBrowserRouter } from "react-router";
 import RootLayouts from "../Layouts/RootLayouts";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Authentications/Login";
@@ -19,6 +19,7 @@ import Payroll from "../Pages/Dashboard/Payroll";
 import Payment from "../Pages/Dashboard/Payment";
 import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 import FAQ from "../Pages/FAQ/FAQ";
+import Profile from "../Pages/MyProfile/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -30,8 +31,12 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path: "faq",
+        path: "/faq",
         Component: FAQ,
+      },
+      {
+        path: "/profile",
+        Component: Profile,
       },
       {
         path: "/contact-us",

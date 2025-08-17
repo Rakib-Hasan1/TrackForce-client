@@ -7,3 +7,17 @@
   font-optical-sizing: auto;
   font-style: normal;
 }
+
+/* .light {
+  --bg: #fff;
+  --text: #222;
+}
+.dark {
+  --bg: #222;
+  --text: #fff;
+}
+body, .light, .dark {
+  background: var(--bg);
+  color: var(--text);
+} */
+

@@ -15,19 +15,19 @@ const Payroll = () => {
     },
   });
 
-
-
   const handlePay = (id) => {
-    // proceed to the payment
     navigate(`/dashboard/payment/${id}`);
   };
 
   if (isLoading) return <LoadingEffect />;
 
   return (
-    <div className="overflow-x-auto rounded-md">
-      <h2 className="text-2xl font-semibold mb-4">Payment Requests</h2>
-      <table className="table min-w-full bg-white rounded-md shadow">
+    <div className="overflow-x-auto p-4 bg-base-100 rounded-lg shadow-md">
+      <h2 className="text-2xl font-semibold mb-4 text-base-content dark:text-base-100">
+        Payment Requests
+      </h2>
+
+      <table className="table w-full bg-white dark:bg-gray-800 rounded-md shadow overflow-hidden">
         <thead className="bg-blue-600 text-white">
           <tr>
             <th className="p-3 text-left">Employee</th>
@@ -41,7 +41,7 @@ const Payroll = () => {
         </thead>
         <tbody>
           {paymentRequests.map((req) => (
-            <tr key={req._id}>
+            <tr key={req._id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
               <td className="p-3">{req.name}</td>
               <td className="p-3">${req.salary}</td>
               <td className="p-3">{req.year}</td>
@@ -55,8 +55,8 @@ const Payroll = () => {
               <td className="p-3">
                 <button
                   onClick={() => handlePay(req._id)}
-                  className="btn btn-sm btn-success"
-                  disabled={req.status === "paid"}
+                  className={`btn btn-sm ${req.status === "paid" ? "btn-disabled" : "btn-success"
+                    }`}
                 >
                   {req.status === "paid" ? "Paid" : "Pay"}
                 </button>

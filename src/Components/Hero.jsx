@@ -1,17 +1,17 @@
 import { Link } from "react-router";
-import banner from '../assets/banner.jpg'
+import banner from "../assets/banner.jpg";
 
 const Hero = () => {
   return (
-    <section className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-gray-900 dark:to-gray-800 py-12">
+    <section className="bg-base-200 py-12 text-base-content">
       <div className="w-11/12 mx-auto flex flex-col-reverse lg:flex-row items-center px-4 gap-10">
         {/* Left Text Content */}
         <div className="flex-1 text-center lg:text-left">
-          <h1 className="text-4xl md:text-5xl font-bold text-blue-700 dark:text-white leading-tight">
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight">
             Empowering Workforces with <br />
-            <span className="text-blue-500">Smart Management</span>
+            <span className="text-primary">Smart Management</span>
           </h1>
-          <p className="mt-4 text-gray-600 dark:text-gray-300 text-lg max-w-xl mx-auto lg:mx-0">
+          <p className="mt-4 text-base-content/70 text-lg max-w-xl mx-auto lg:mx-0">
             TrackForce helps HRs and Admins track employee performance, salary
             records, and workflow updates — all in one place. Automate work.
             Empower your team.
@@ -30,10 +30,20 @@ const Hero = () => {
           <img
             src={banner}
             alt="TrackForce Hero Banner"
-            className="w-full h-full rounded-lg border-t-10 border-r-10 border-blue-600"
+            className="w-full h-full rounded-lg border-t-8 border-r-8 border-primary"
+            style={{
+              animation: "float 5s ease-in-out infinite",
+            }}
           />
         </div>
       </div>
+       <style>{`
+        @keyframes float {
+          0%, 100% { transform: translate(0,0); }
+          50% { transform: translate(8px, 8px); }
+          75% { transform: translateX(-8px, 8px); }
+        }
+      `}</style>
     </section>
   );
 };

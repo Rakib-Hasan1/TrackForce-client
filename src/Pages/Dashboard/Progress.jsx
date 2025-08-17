@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import LoadingEffect from "../../Components/LoadingEffect";
 
 const months = [
   { label: "January", value: "01" },
@@ -31,7 +32,7 @@ const Progress = () => {
     });
   }, [axiosSecure]);
 
-  const { data: workRecords = [], refetch } = useQuery({
+  const { data: workRecords = [], isLoading, refetch } = useQuery({
     queryKey: ["progress", selectedMonth, selectedEmail],
     queryFn: async () => {
       const res = await axiosSecure.get("/progress", {
@@ -45,15 +46,16 @@ const Progress = () => {
     enabled: !!selectedMonth, // only run when month is selected
   });
 
-
   return (
-    <div className="">
-      <h2 className="text-2xl font-bold mb-6">Employee Work Progress</h2>
+    <div className="p-4 bg-base-200 min-h-screen">
+      <h2 className="text-2xl font-bold mb-6 text-center text-base-content dark:text-base-100">
+        Employee Work Progress
+      </h2>
 
-      <div className="flex gap-4 mb-6 flex-wrap">
+      <div className="flex gap-4 mb-6 flex-wrap justify-center">
         {/* Month Filter */}
         <select
-          className="select border border-blue-300 px-4 py-2 rounded-md w-full md:w-1/4 cursor-pointer"
+          className="select border border-blue-300 dark:border-blue-700 px-4 py-2 rounded-md w-full md:w-1/4 cursor-pointer bg-base-100 dark:bg-base-200 text-base-content dark:text-base-100"
           value={selectedMonth}
           onChange={(e) => setSelectedMonth(e.target.value)}
         >
@@ -67,7 +69,7 @@ const Progress = () => {
 
         {/* Email Filter */}
         <select
-          className="select border border-blue-300 px-4 py-2 rounded-md w-full md:w-1/4 cursor-pointer"
+          className="select border border-blue-300 dark:border-blue-700 px-4 py-2 rounded-md w-full md:w-1/4 cursor-pointer bg-base-100 dark:bg-base-200 text-base-content dark:text-base-100"
           value={selectedEmail}
           onChange={(e) => setSelectedEmail(e.target.value)}
         >
@@ -80,38 +82,42 @@ const Progress = () => {
         </select>
       </div>
 
-      {/* Table */}
-      {workRecords.length > 0 ? (
-        <div className="overflow-x-auto">
-          <table className="table w-full">
-            <thead>
+      {isLoading ? (
+        <LoadingEffect />
+      ) : workRecords.length > 0 ? (
+        <div className="overflow-x-auto rounded-lg shadow-md">
+          <table className="table w-full bg-base-100 dark:bg-base-200">
+            <thead className="bg-blue-600 text-white dark:bg-blue-700 dark:text-white">
               <tr>
-                <th>Date</th>
-                <th>Email</th>
-                <th>Task</th>
-                <th>Hours</th>
+                <th className="p-3 text-left">Date</th>
+                <th className="p-3 text-left">Email</th>
+                <th className="p-3 text-left">Task</th>
+                <th className="p-3 text-left">Hours</th>
               </tr>
             </thead>
             <tbody>
               {workRecords.map((record) => (
-                <tr key={record._id}>
-                  <td>{new Date(record.date).toLocaleDateString()}</td>
-                  <td>{record.email}</td>
-                  <td>{record.task}</td>
-                  <td>{record.hours}</td>
+                <tr key={record._id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <td className="p-3 text-base-content dark:text-base-100">{new Date(record.date).toLocaleDateString()}</td>
+                  <td className="p-3 text-base-content dark:text-base-100">{record.email}</td>
+                  <td className="p-3 text-base-content dark:text-base-100">{record.task}</td>
+                  <td className="p-3 text-base-content dark:text-base-100">{record.hours}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       ) : selectedMonth ? (
-        <p className="text-center text-gray-500 mt-6">No records found.</p>
+        <p className="text-center text-gray-500 dark:text-gray-300 mt-6">
+          No records found for selected filters.
+        </p>
       ) : (
-        <p className="text-center text-gray-400 mt-6">
+        <p className="text-center text-gray-400 dark:text-gray-400 mt-6">
           Please select a month to view data.
         </p>
       )}
     </div>
+
   );
 };
 

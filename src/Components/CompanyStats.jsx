@@ -12,27 +12,27 @@ const stats = [
   {
     title: "Employees",
     count: 138,
-    icon: <FaUsers className="text-3xl text-blue-600" />,
+    icon: <FaUsers className="text-3xl text-primary" />,
   },
   {
     title: "Tasks Logged",
     count: 982,
-    icon: <FaTasks className="text-3xl text-blue-600" />,
+    icon: <FaTasks className="text-3xl text-primary" />,
   },
   {
     title: "Payments Made",
     count: 412,
-    icon: <FaMoneyCheckAlt className="text-3xl text-blue-600" />,
+    icon: <FaMoneyCheckAlt className="text-3xl text-primary" />,
   },
   {
     title: "HR Managers",
     count: 7,
-    icon: <FaUserTie className="text-3xl text-blue-600" />,
+    icon: <FaUserTie className="text-3xl text-primary" />,
   },
   {
     title: "Hours Tracked",
     count: 8245,
-    icon: <FaClock className="text-3xl text-blue-600" />,
+    icon: <FaClock className="text-3xl text-primary" />,
   },
 ];
 
@@ -56,14 +56,14 @@ const cardVariants = {
 
 const CompanyStats = () => {
   return (
-    <section className="bg-white dark:bg-gray-950 py-16 px-4 md:px-8">
+    <section className="bg-base-200 text-base-content py-16 px-4 md:px-8">
       <div className="max-w-6xl mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-3xl font-bold text-blue-600 dark:text-white mb-4"
+          className="text-3xl font-bold text-primary mb-4"
         >
           TrackForce In Numbers
         </motion.h2>
@@ -72,7 +72,7 @@ const CompanyStats = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-gray-600 dark:text-gray-300 mb-12"
+          className="text-base-content/70 mb-12"
         >
           Here's a glimpse of our platform's activity and success.
         </motion.p>
@@ -89,15 +89,13 @@ const CompanyStats = () => {
               key={i}
               variants={cardVariants}
               whileHover={{ scale: 1.05 }}
-              className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow text-center cursor-pointer"
+              className="bg-base-100 p-6 rounded-lg shadow text-center cursor-pointer transition hover:shadow-lg"
             >
               <div className="mb-2 flex justify-center">{stat.icon}</div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+              <h3 className="text-2xl font-bold text-base-content">
                 <CountUp end={stat.count} duration={8} separator="," />
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 mt-1 text-sm">
-                {stat.title}
-              </p>
+              <p className="text-base-content/70 mt-1 text-sm">{stat.title}</p>
             </motion.div>
           ))}
         </motion.div>

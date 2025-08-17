@@ -2,11 +2,11 @@ import { FaFacebook, FaLinkedin, FaGithub } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 text-gray-700 pt-10 border-t">
+    <footer className="bg-base-100 text-base-content pt-10 border-t border-gray-500">
       <div className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
 
         <div>
-          <h2 className="text-xl font-bold text-gray-800">TrackForce</h2>
+          <h2 className="text-xl font-bold text-base-content">TrackForce</h2>
           <p className="mt-2 text-sm">
             TrackForce is an efficient employee management platform to track
             work hours, manage payroll, and streamline your HR processes.
