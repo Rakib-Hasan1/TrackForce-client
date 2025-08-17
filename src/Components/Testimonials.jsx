@@ -20,9 +20,7 @@ const Testimonials = () => {
   });
 
   if (isLoading) {
-    return (
-      <LoadingEffect/>
-    );
+    return <LoadingEffect />;
   }
 
   return (
@@ -37,13 +35,18 @@ const Testimonials = () => {
 
         <Swiper
           modules={[Autoplay]}
-          slidesPerView={3}
           centeredSlides={true}
           spaceBetween={30}
           loop={true}
           autoplay={{ delay: 4000 }}
           onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
           className="max-w-6xl mx-auto"
+          breakpoints={{
+            0: { slidesPerView: 1 }, // mobile
+            640: { slidesPerView: 1 }, // sm
+            768: { slidesPerView: 2 }, // md
+            1024: { slidesPerView: 3 }, // lg and up
+          }}
         >
           {testimonials.map((t, index) => {
             const isActive = index === activeIndex;
