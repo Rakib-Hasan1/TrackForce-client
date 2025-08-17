@@ -50,7 +50,7 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center px-4 bg-base-200  transition-colors">
       <div className="w-full max-w-md bg-base-100 shadow-xl p-8 rounded-xl transition-colors">
-        <h2 className="text-2xl font-bold text-center mb-6 text-blue-500">
+        <h2 className="text-2xl font-bold text-center mb-6 text-blue-500 mozilla">
           TrackForce Login
         </h2>
 

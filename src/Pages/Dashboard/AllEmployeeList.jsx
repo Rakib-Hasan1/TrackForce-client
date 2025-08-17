@@ -77,7 +77,7 @@ const AllEmployeeList = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-bold text-blue-500">
+        <h2 className="text-3xl font-bold text-blue-500 mozilla">
           All Verified Employees
         </h2>
         <button
@@ -92,7 +92,7 @@ const AllEmployeeList = () => {
       {/* Table View */}
       {isTableView ? (
         <div className="overflow-x-auto">
-          <table className="table w-full bg-base-200 rounded shadow">
+          <table className="table w-full bg-base-100 rounded shadow">
             <thead className="">
               <tr>
                 <th className="p-3 text-left">Name</th>
@@ -169,7 +169,7 @@ const AllEmployeeList = () => {
               <h3 className="text-lg font-bold">{person.name}</h3>
               <p className="text-sm">Designation: {person.designation}</p>
               <p className="text-sm capitalize">Role: {person.role}</p>
-              <p className="text-sm">Salary: ৳{person.salary}</p>
+              <p className="text-sm">Salary: ${person.salary}</p>
 
               <form onSubmit={(e) => handleSalaryUpdate(e, person._id)} className="flex items-center gap-2">
                 <input

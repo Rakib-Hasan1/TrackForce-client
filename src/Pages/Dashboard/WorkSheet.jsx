@@ -97,12 +97,12 @@ const WorkSheet = () => {
   };
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-semibold text-primary mb-6">📝 Work Sheet</h2>
+    <div>
+      <h2 className="text-3xl font-bold text-blue-500 mb-6 mozilla">Work Sheet</h2>
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col md:flex-row gap-4 items-center bg-base-200 p-4 rounded-lg shadow mb-6"
+        className="flex flex-col md:flex-row gap-4 items-center bg-base-100 p-4 rounded-lg shadow mb-6"
       >
         <select
           {...register("task", { required: true })}
@@ -140,7 +140,7 @@ const WorkSheet = () => {
 
       {/* works data */}
       <div className="overflow-x-auto">
-        <table className="table table-compact w-full bg-base-200 rounded-lg shadow-md overflow-hidden">
+        <table className="table table-compact w-full bg-base-100 rounded-lg shadow-md overflow-hidden">
           <thead className="bg-primary text-primary-content">
             <tr>
               <th>Task</th>

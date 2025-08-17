@@ -44,7 +44,7 @@ const Services = () => {
   return (
     <section className="py-12 bg-base-200 text-base-content">
       <div className="max-w-7xl mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold text-primary mb-3">
+        <h2 className="text-3xl font-bold text-primary mb-3 mozilla">
           What We Offer
         </h2>
         <p className="text-base-content/70 mb-10 max-w-2xl mx-auto">

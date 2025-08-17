@@ -48,7 +48,7 @@ const Progress = () => {
 
   return (
     <div className="p-4 bg-base-200 min-h-screen">
-      <h2 className="text-2xl font-bold mb-6 text-center text-base-content dark:text-base-100">
+      <h2 className="text-3xl font-bold mb-6 text-center text-blue-500 mozilla">
         Employee Work Progress
       </h2>
 

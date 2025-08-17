@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mozilla+Headline:wght@200..700&display=swap');
 @import "tailwindcss";
 @plugin "daisyui";
+
+
+.mozilla {
+  font-family: "Mozilla Headline", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
 
 #root {
   font-family: "Inter", sans-serif;
@@ -8,16 +16,5 @@
   font-style: normal;
 }
 
-/* .light {
-  --bg: #fff;
-  --text: #222;
-}
-.dark {
-  --bg: #222;
-  --text: #fff;
-}
-body, .light, .dark {
-  background: var(--bg);
-  color: var(--text);
-} */
+
 

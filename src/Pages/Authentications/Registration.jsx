@@ -95,7 +95,7 @@ const Registration = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 px-4">
       <div className="w-full max-w-md bg-base-100 shadow-xl p-8 rounded-xl">
-        <h2 className="text-2xl font-bold text-center mb-6 text-blue-700 dark:text-blue-400">
+        <h2 className="text-2xl font-bold text-center mb-6 text-blue-700 dark:text-blue-400 mozilla">
           TrackForce Registration
         </h2>
 

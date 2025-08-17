@@ -28,7 +28,7 @@ const Testimonials = () => {
   return (
     <section className="bg-base-200 text-base-content py-16">
       <div className="max-w-6xl mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold text-primary mb-3">
+        <h2 className="text-3xl font-bold text-primary mb-3 mozilla">
           What People Say
         </h2>
         <p className="text-base-content/70 mb-10">

@@ -36,7 +36,7 @@ const Profile = () => {
 
                 {/* Profile Info */}
                 <div className="flex-1 flex flex-col justify-center gap-3">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{employeeData?.name || "John Doe"}</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mozilla">{employeeData?.name || "John Doe"}</h2>
                     <p className="text-gray-600 dark:text-gray-300 flex items-center gap-2">
                         <FaEnvelope /> {employeeData?.email || "user@example.com"}
                     </p>

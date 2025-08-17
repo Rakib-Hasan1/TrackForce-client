@@ -62,7 +62,7 @@ const EmployeeList = () => {
   if (isLoading) return <LoadingEffect />;
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto rounded-md">
       <table className="table table-zebra w-full bg-base-100 dark:bg-base-200 shadow-md rounded-md">
         <thead className="bg-primary text-primary-content dark:bg-primary dark:text-primary-content">
           <tr>

@@ -22,8 +22,8 @@ const Payroll = () => {
   if (isLoading) return <LoadingEffect />;
 
   return (
-    <div className="overflow-x-auto p-4 bg-base-100 rounded-lg shadow-md">
-      <h2 className="text-2xl font-semibold mb-4 text-base-content dark:text-base-100">
+    <div className="overflow-x-auto rounded-md">
+      <h2 className="text-3xl font-bold mb-4 text-blue-500 mozilla">
         Payment Requests
       </h2>
 

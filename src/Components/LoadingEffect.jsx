@@ -13,7 +13,7 @@ const LoadingEffect = () => {
         </div>
 
         {/* Loading Text */}
-        <p className="text-gray-600 dark:text-gray-300 font-medium text-lg tracking-wide">
+        <p className="text-gray-600 dark:text-gray-300 font-medium text-lg tracking-wide mozilla">
           Loading <span className="font-bold text-blue-600">TrackForce</span>...
         </p>
       </div>

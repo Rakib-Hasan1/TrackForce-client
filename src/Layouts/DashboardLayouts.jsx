@@ -54,7 +54,7 @@ const DashboardLayouts = () => {
   }
 
   return (
-    <div className="min-h-screen flex bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 relative">
+    <div className="min-h-screen flex bg-gray-100 text-gray-800 relative">
       {/* Mobile toggle button */}
       <button
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}

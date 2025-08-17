@@ -52,7 +52,7 @@ const ContactUs = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="bg-base-100 p-8 rounded-lg shadow-md"
         >
-          <h2 className="text-2xl font-semibold mb-6 text-base-content">
+          <h2 className="text-2xl font-semibold mb-6 text-blue-500 mozilla">
             Contact Us
           </h2>
 
@@ -120,7 +120,7 @@ const ContactUs = () => {
 
         {/* Dummy Company Info */}
         <div className="bg-base-100 p-8 rounded-lg shadow-md flex flex-col justify-center">
-          <h3 className="text-xl font-semibold mb-4 text-base-content">
+          <h3 className="text-xl font-semibold mb-4 text-base-content mozilla">
             Our Office
           </h3>
           <p className="text-base-content/70 mb-2">

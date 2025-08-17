@@ -46,8 +46,8 @@ const AdminDashboard = () => {
   const totalMessages = messages.length;
 
   return (
-    <div className="p-6 bg-base-100 dark:bg-base-200 min-h-screen">
-      <h1 className="text-3xl font-bold mb-8 text-base-content dark:text-base-100">
+    <div className="min-h-screen">
+      <h1 className="text-3xl font-bold mb-8 text-blue-500 mozilla">
         Welcome to Dashboard
       </h1>
 

@@ -30,11 +30,32 @@ const EmployeeDashboard = () => {
   if (isLoading) return <LoadingEffect />;
 
   return (
-    <div className="bg-base-100 dark:bg-base-200 min-h-screen">
-      <div className="max-w-2xl mx-auto p-6 space-y-10">
+    <div className="min-h-screen">
+      <div className="p-6 flex flex-col lg:flex-row gap-5">
+
+        {/* Section 2: Monthly Work Summary */}
+        <section className="bg-base-100 dark:bg-base-300 p-6 rounded-md">
+          <h2 className="text-3xl font-bold text-blue-500 mb-4 mozilla">
+            Monthly Work Summary
+          </h2>
+          {workData.length === 0 ? (
+            <p className="text-base-content dark:text-base-200">No work data found.</p>
+          ) : (
+            <ul className="list-disc list-inside space-y-1 text-base-content">
+              {Object.entries(monthlySummary).map(([month, hours]) => (
+                <li key={month}>
+                  <strong>{month}:</strong> {hours} hours
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+
+
+
         {/* Section 1: Profile Info */}
-        <section className="bg-base-200 dark:bg-base-300 p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold text-base-content dark:text-base-100 mb-4">
+        <section className="bg-base-100 dark:bg-base-300 p-6 rounded-md">
+          <h2 className="text-3xl font-bold mb-4 text-blue-500 mozilla">
             Your Profile
           </h2>
           <div className="flex items-center space-x-6">
@@ -55,23 +76,7 @@ const EmployeeDashboard = () => {
           </div>
         </section>
 
-        {/* Section 2: Monthly Work Summary */}
-        <section className="bg-base-200 dark:bg-base-300 p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold text-base-content dark:text-base-100 mb-4">
-            Monthly Work Summary
-          </h2>
-          {workData.length === 0 ? (
-            <p className="text-base-content dark:text-base-200">No work data found.</p>
-          ) : (
-            <ul className="list-disc list-inside space-y-1 text-base-content dark:text-base-100">
-              {Object.entries(monthlySummary).map(([month, hours]) => (
-                <li key={month}>
-                  <strong>{month}:</strong> {hours} hours
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
+
       </div>
     </div>
   );

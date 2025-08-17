@@ -17,8 +17,8 @@ const HRDashboard = () => {
   if (error) return <div className="text-error">Error loading work summary.</div>;
 
   return (
-    <section className="p-4 bg-base-100 dark:bg-base-200 rounded-lg shadow-md">
-      <h2 className="text-xl font-semibold mb-4 text-base-content dark:text-base-100">
+    <section className="p-4 bg-base-100 dark:bg-base-200 rounded-md">
+      <h2 className="text-3xl font-bold mb-4 text-blue-500 dark:text-base-100 mozilla">
         Employee's Work Summary
       </h2>
       <table className="table table-zebra w-full border border-base-300">
