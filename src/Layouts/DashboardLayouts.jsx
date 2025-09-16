@@ -12,7 +12,6 @@ import {
 } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
-import site_logo from "../assets/site_logo.png";
 import useUserRole from "../Hooks/useUserRole";
 import LoadingEffect from "../Components/LoadingEffect";
 import { FaMoneyCheckDollar } from "react-icons/fa6";

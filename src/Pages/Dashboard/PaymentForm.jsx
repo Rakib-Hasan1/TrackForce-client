@@ -40,7 +40,7 @@ const PaymentForm = () => {
     setLoading(true);
 
     try {
-      const { error: stripeError, paymentMethod } = await stripe.createPaymentMethod({
+      const { error: stripeError } = await stripe.createPaymentMethod({
         type: "card",
         card,
       });
