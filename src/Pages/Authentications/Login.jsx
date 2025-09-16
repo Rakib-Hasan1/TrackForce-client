@@ -57,13 +57,13 @@ const Login = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Email */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+            <label className="block text-sm font-medium">
               Email
             </label>
             <input
               type="email"
               {...register("email", { required: "Email is required" })}
-              className="w-full mt-1 px-4 py-2 border rounded-lg focus:outline-blue-500 focus:ring focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white placeholder-gray-400 dark:placeholder-gray-300"
+              className="w-full mt-1 px-4 py-2 border border-base-300 rounded-lg focus:outline-blue-500 focus:ring focus:ring-blue-300"
               placeholder="you@example.com"
             />
             {errors.email && (
@@ -73,14 +73,14 @@ const Login = () => {
 
           {/* Password */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+            <label className="block text-sm font-medium">
               Password
             </label>
             <div className="relative">
               <input
                 type={passwordVisible ? "text" : "password"}
                 {...register("password", { required: "Password is required" })}
-                className="w-full mt-1 px-4 py-2 border rounded-lg focus:outline-blue-500 focus:ring focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white placeholder-gray-400 dark:placeholder-gray-300"
+                className="w-full mt-1 px-4 py-2 border border-base-300 rounded-lg focus:outline-blue-500 focus:ring focus:ring-blue-300"
                 placeholder="•••••••"
               />
               <button

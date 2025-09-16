@@ -86,34 +86,29 @@ const Registration = () => {
     }
   };
 
-  // unified input classes for light & dark
-  const inputClasses =
-    "w-full mt-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 " +
-    "bg-white text-gray-900 placeholder-gray-400 border-gray-300 " +
-    "dark:bg-gray-700 dark:text-white dark:placeholder-gray-300 dark:border-gray-600";
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 px-4">
       <div className="w-full max-w-md bg-base-100 shadow-xl p-8 rounded-xl">
-        <h2 className="text-2xl font-bold text-center mb-6 text-blue-700 dark:text-blue-400 mozilla">
+        <h2 className="text-2xl font-bold text-center mb-6 text-blue-700 mozilla">
           TrackForce Registration
         </h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 grid grid-cols-1 lg:grid-cols-2 gap-5">
           {/* Name */}
           <div>
-            <label className="block text-sm font-medium dark:text-white">Full Name</label>
-            <input {...register("name", { required: "Name is required" })} className={inputClasses} placeholder="John Doe" />
+            <label className="block text-sm font-medium">Full Name</label>
+            <input {...register("name", { required: "Name is required" })} className={"w-full mt-1 px-4 py-2 border border-base-300 rounded-lg focus:outline-blue-500 focus:ring focus:ring-blue-300"} placeholder="John Doe" />
             {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
           </div>
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-medium dark:text-white">Email</label>
+            <label className="block text-sm font-medium">Email</label>
             <input
               type="email"
               {...register("email", { required: "Email is required", pattern: { value: /^\S+@\S+$/i, message: "Invalid email format" } })}
-              className={inputClasses}
+              className={"w-full mt-1 px-4 py-2 border border-base-300 rounded-lg focus:outline-blue-500 focus:ring focus:ring-blue-300"}
               placeholder="you@example.com"
             />
             {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
@@ -121,7 +116,7 @@ const Registration = () => {
 
           {/* Password */}
           <div>
-            <label className="block text-sm font-medium dark:text-white">Password</label>
+            <label className="block text-sm font-medium mb-1">Password</label>
             <div className="relative">
               <input
                 type={passwordVisible ? "text" : "password"}
@@ -130,7 +125,7 @@ const Registration = () => {
                   minLength: { value: 6, message: "At least 6 characters" },
                   pattern: { value: /^(?=.*[A-Z])(?=.*[!@#$%^&*])/, message: "1 capital letter & 1 special character required" },
                 })}
-                className={inputClasses}
+                className={"w-full px-4 py-2 border border-base-300 rounded-lg focus:outline-blue-500 focus:ring focus:ring-blue-300"}
                 placeholder="•••••••"
               />
               <button
@@ -146,8 +141,8 @@ const Registration = () => {
 
           {/* Role */}
           <div>
-            <label className="block text-sm font-medium dark:text-white">Role</label>
-            <select {...register("role", { required: "Select a role" })} className={inputClasses} defaultValue="">
+            <label className="block text-sm font-medium">Role</label>
+            <select {...register("role", { required: "Select a role" })} className={"w-full mt-1 px-4 py-2 border border-base-300 rounded-lg focus:outline-blue-500 focus:ring focus:ring-blue-300"} defaultValue="">
               <option value="" disabled>Select a role</option>
               <option value="employee">Employee</option>
               <option value="hr">HR</option>
@@ -157,29 +152,29 @@ const Registration = () => {
 
           {/* Bank Account */}
           <div>
-            <label className="block text-sm font-medium dark:text-white">Bank Account No.</label>
-            <input {...register("bank_account_no", { required: "Bank account no. is required" })} className={inputClasses} placeholder="1234567890" />
+            <label className="block text-sm font-medium">Bank Account No.</label>
+            <input {...register("bank_account_no", { required: "Bank account no. is required" })} className={"w-full mt-1 px-4 py-2 border border-base-300 rounded-lg focus:outline-blue-500 focus:ring focus:ring-blue-300"} placeholder="1234567890" />
             {errors.bank_account_no && <p className="text-red-500 text-sm">{errors.bank_account_no.message}</p>}
           </div>
 
           {/* Salary */}
           <div>
-            <label className="block text-sm font-medium dark:text-white">Salary</label>
-            <input type="number" step="any" {...register("salary", { required: "Salary is required" })} className={inputClasses} placeholder="30000" />
+            <label className="block text-sm font-medium">Salary</label>
+            <input type="number" step="any" {...register("salary", { required: "Salary is required" })} className={"w-full mt-1 px-4 py-2 border border-base-300 rounded-lg focus:outline-blue-500 focus:ring focus:ring-blue-300"} placeholder="$3000" />
             {errors.salary && <p className="text-red-500 text-sm">{errors.salary.message}</p>}
           </div>
 
           {/* Designation */}
           <div>
-            <label className="block text-sm font-medium dark:text-white">Designation</label>
-            <input {...register("designation", { required: "Designation is required" })} className={inputClasses} placeholder="Software Engineer" />
+            <label className="block text-sm font-medium">Designation</label>
+            <input {...register("designation", { required: "Designation is required" })} className={"w-full mt-1 px-4 py-2 border border-base-300 rounded-lg focus:outline-blue-500 focus:ring focus:ring-blue-300"} placeholder="Software Engineer" />
             {errors.designation && <p className="text-red-500 text-sm">{errors.designation.message}</p>}
           </div>
 
           {/* Photo Upload */}
           <div>
-            <label className="block text-sm font-medium dark:text-white">Select Photo</label>
-            <input type="file" accept="image/*" {...register("photo", { required: "Photo is required" })} className={inputClasses} />
+            <label className="block text-sm font-medium">Select Photo</label>
+            <input type="file" accept="image/*" {...register("photo", { required: "Photo is required" })} className={"w-full mt-1 px-4 py-2 border border-base-300 rounded-lg focus:outline-blue-500 focus:ring focus:ring-blue-300"} />
             {errors.photo && <p className="text-red-500 text-sm">{errors.photo.message}</p>}
           </div>
 
@@ -194,7 +189,7 @@ const Registration = () => {
           <SocialLogin />
         </div>
 
-        <p className="mt-4 text-sm text-center dark:text-white">
+        <p className="mt-4 text-sm text-center">
           Already have an account?{" "}
           <Link to="/login" className="text-blue-600 hover:underline">
             Login
