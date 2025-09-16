@@ -57,12 +57,12 @@ const AdminDashboard = () => {
           initial="hidden"
           animate="visible"
           variants={cardVariants}
-          className="bg-base-200 dark:bg-base-300 rounded-lg shadow-md p-6 flex items-center space-x-4 hover:scale-105 transition-transform duration-300"
+          className="bg-base-200  rounded-lg shadow-md p-6 flex items-center space-x-4 hover:scale-105 transition-transform duration-300"
         >
           <FaUsers className="text-4xl text-blue-600" />
           <div>
-            <p className="text-base-content dark:text-base-100">Total Employees</p>
-            <p className="text-2xl font-semibold text-base-content dark:text-base-100">{totalEmployees}</p>
+            <p className="text-base-content">Total Employees</p>
+            <p className="text-2xl font-semibold text-base-content">{totalEmployees}</p>
           </div>
         </motion.div>
 
@@ -71,12 +71,12 @@ const AdminDashboard = () => {
           initial="hidden"
           animate="visible"
           variants={cardVariants}
-          className="bg-base-200 dark:bg-base-300 rounded-lg shadow-md p-6 flex items-center space-x-4 hover:scale-105 transition-transform duration-300"
+          className="bg-base-200 rounded-lg shadow-md p-6 flex items-center space-x-4 hover:scale-105 transition-transform duration-300"
         >
           <FaMoneyCheckAlt className="text-4xl text-green-600" />
           <div>
-            <p className="text-base-content dark:text-base-100">Total Payments</p>
-            <p className="text-2xl font-semibold text-base-content dark:text-base-100">{totalPayments}</p>
+            <p className="text-base-content">Total Payments</p>
+            <p className="text-2xl font-semibold text-base-content">{totalPayments}</p>
           </div>
         </motion.div>
 
@@ -85,12 +85,12 @@ const AdminDashboard = () => {
           initial="hidden"
           animate="visible"
           variants={cardVariants}
-          className="bg-base-200 dark:bg-base-300 rounded-lg shadow-md p-6 flex items-center space-x-4 hover:scale-105 transition-transform duration-300"
+          className="bg-base-200 rounded-lg shadow-md p-6 flex items-center space-x-4 hover:scale-105 transition-transform duration-300"
         >
           <FaDollarSign className="text-4xl text-yellow-600" />
           <div>
-            <p className="text-base-content dark:text-base-100">Total Salary Paid</p>
-            <p className="text-2xl font-semibold text-base-content dark:text-base-100">
+            <p className="text-base-content">Total Salary Paid</p>
+            <p className="text-2xl font-semibold text-base-content">
               {totalSalaryPaid.toLocaleString("en-US", { style: "currency", currency: "USD" })}
             </p>
           </div>
@@ -101,12 +101,12 @@ const AdminDashboard = () => {
           initial="hidden"
           animate="visible"
           variants={cardVariants}
-          className="bg-base-200 dark:bg-base-300 rounded-lg shadow-md p-6 flex items-center space-x-4 hover:scale-105 transition-transform duration-300"
+          className="bg-base-200 rounded-lg shadow-md p-6 flex items-center space-x-4 hover:scale-105 transition-transform duration-300"
         >
           <FaEnvelope className="text-4xl text-purple-600" />
           <div>
-            <p className="text-base-content dark:text-base-100">Messages</p>
-            <p className="text-2xl font-semibold text-base-content dark:text-base-100">{totalMessages}</p>
+            <p className="text-base-content">Messages</p>
+            <p className="text-2xl font-semibold text-base-content">{totalMessages}</p>
           </div>
         </motion.div>
       </div>

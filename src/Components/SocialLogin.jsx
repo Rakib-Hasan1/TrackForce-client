@@ -29,7 +29,7 @@ const SocialLogin = () => {
         isVerified: false,
       };
 
-      const userRes = await axiosInstance.post("/peoples", userInfo);
+      await axiosInstance.post("/peoples", userInfo);
 
 
       toast.success("Login successful!");

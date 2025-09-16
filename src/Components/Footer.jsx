@@ -43,7 +43,7 @@ const Footer = () => {
 
         <div>
           <h3 className="text-lg font-semibold mb-2 mozilla text-primary">Contact</h3>
-          <p className="text-sm">Email: dev.rakibhasan1.com</p>
+          <p className="text-sm">Email: dev.rakibhasan1@gmail.com</p>
           <p className="text-sm mb-3">Phone: +880-1776-073928</p>
 
           <div className="flex space-x-4 text-xl text-gray-600 mt-2">

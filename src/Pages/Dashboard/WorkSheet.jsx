@@ -97,12 +97,12 @@ const WorkSheet = () => {
   };
 
   return (
-    <div>
+    <div className="bg-base-200 p-5 rounded-md">
       <h2 className="text-3xl font-bold text-blue-500 mb-6 mozilla">Work Sheet</h2>
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col md:flex-row gap-4 items-center bg-base-100 p-4 rounded-lg shadow mb-6"
+        className="flex flex-col md:flex-row gap-4 items-center bg-base-200 p-4 rounded-lg shadow mb-6"
       >
         <select
           {...register("task", { required: true })}

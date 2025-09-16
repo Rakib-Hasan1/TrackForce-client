@@ -54,7 +54,7 @@ const DashboardLayouts = () => {
   }
 
   return (
-    <div className="min-h-screen flex bg-gray-100 text-gray-800 relative">
+    <div className="min-h-screen flex bg-base-100 relative">
       {/* Mobile toggle button */}
       <button
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -65,21 +65,16 @@ const DashboardLayouts = () => {
 
       {/* Sidebar */}
       <aside
-        className={`z-40 h-screen w-64 bg-white dark:bg-gray-800 shadow-lg transition-transform duration-300
-            ${
-              isSidebarOpen
-                ? "translate-x-0"
-                : "-translate-x-full md:translate-x-0"
-            }
+        className={`z-40 h-screen w-64 bg-base-100 shadow-lg transition-transform duration-300
+            ${isSidebarOpen
+            ? "translate-x-0"
+            : "-translate-x-full md:translate-x-0"
+          }
            fixed md:sticky top-0`}
       >
-        <div className="px-6 py-5 text-xl font-semibold border-b border-gray-200 dark:border-gray-700">
+        <div className="px-6 py-5 text-xl font-semibold border-b border-gray-200">
           <Link to="/">
-            <img
-              src={site_logo}
-              className="h-14 ml-6 md:ml-0 hover:scale-105 transition-transform"
-              alt="TrackForce Logo"
-            />
+            <p className="font-bold text-center text-3xl h-10 text-primary italic hover:scale-105 transition duration-200">Track Force</p>
           </Link>
         </div>
         <nav className="flex flex-col gap-1 p-4">
@@ -87,8 +82,7 @@ const DashboardLayouts = () => {
             to="/dashboard"
             end
             className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-100 dark:hover:bg-gray-700 ${
-                isActive ? "bg-blue-200 dark:bg-gray-700 font-semibold" : ""
+              `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-400 ${isActive ? "bg-blue-400 font-semibold" : ""
               }`
             }
           >
@@ -101,8 +95,7 @@ const DashboardLayouts = () => {
               <NavLink
                 to="/dashboard/work-sheet"
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-100 dark:hover:bg-gray-700 ${
-                    isActive ? "bg-blue-200 dark:bg-gray-700 font-semibold" : ""
+                  `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-400 ${isActive ? "bg-blue-400 font-semibold" : ""
                   }`
                 }
               >
@@ -113,8 +106,7 @@ const DashboardLayouts = () => {
               <NavLink
                 to="/dashboard/payment-history"
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-100 dark:hover:bg-gray-700 ${
-                    isActive ? "bg-blue-200 dark:bg-gray-700 font-semibold" : ""
+                  `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-400 ${isActive ? "bg-blue-400 font-semibold" : ""
                   }`
                 }
               >
@@ -129,8 +121,7 @@ const DashboardLayouts = () => {
               <NavLink
                 to="/dashboard/employee-list"
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-100 dark:hover:bg-gray-700 ${
-                    isActive ? "bg-blue-200 dark:bg-gray-700 font-semibold" : ""
+                  `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-400 ${isActive ? "bg-blue-400 font-semibold" : ""
                   }`
                 }
               >
@@ -140,8 +131,7 @@ const DashboardLayouts = () => {
               <NavLink
                 to="/dashboard/progress"
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-100 dark:hover:bg-gray-700 ${
-                    isActive ? "bg-blue-200 dark:bg-gray-700 font-semibold" : ""
+                  `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-400 ${isActive ? "bg-blue-400 font-semibold" : ""
                   }`
                 }
               >
@@ -155,8 +145,7 @@ const DashboardLayouts = () => {
               <NavLink
                 to="/dashboard/all-employee"
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-100 dark:hover:bg-gray-700 ${
-                    isActive ? "bg-blue-200 dark:bg-gray-700 font-semibold" : ""
+                  `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-400 ${isActive ? "bg-blue-400 font-semibold" : ""
                   }`
                 }
               >
@@ -166,8 +155,7 @@ const DashboardLayouts = () => {
               <NavLink
                 to="/dashboard/payroll"
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-100 dark:hover:bg-gray-700 ${
-                    isActive ? "bg-blue-200 dark:bg-gray-700 font-semibold" : ""
+                  `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-blue-400 ${isActive ? "bg-blue-400 font-semibold" : ""
                   }`
                 }
               >
@@ -179,7 +167,7 @@ const DashboardLayouts = () => {
 
           <button
             onClick={handleLogout}
-            className="flex items-center gap-3 px-4 py-2 mt-4 rounded-md bg-red-100 text-red-700 hover:bg-red-200 transition"
+            className="flex items-center gap-3 px-4 py-2 mt-4 rounded-md bg-red-100 text-red-700 hover:bg-red-200 transition cursor-pointer"
           >
             <FaSignOutAlt />
             Logout

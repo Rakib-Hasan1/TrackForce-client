@@ -17,15 +17,15 @@ const HRDashboard = () => {
   if (error) return <div className="text-error">Error loading work summary.</div>;
 
   return (
-    <section className="p-4 bg-base-100 dark:bg-base-200 rounded-md">
-      <h2 className="text-3xl font-bold mb-4 text-blue-500 dark:text-base-100 mozilla">
+    <section className="p-4 bg-base-200 rounded-md">
+      <h2 className="text-3xl font-bold mb-4 text-blue-500 mozilla">
         Employee's Work Summary
       </h2>
       <table className="table table-zebra w-full border border-base-300">
-        <thead className="bg-base-200 dark:bg-base-300">
+        <thead>
           <tr>
-            <th className="p-2 text-base-content dark:text-base-100">Employee Email</th>
-            <th className="p-2 text-base-content dark:text-base-100">Total Hours</th>
+            <th className="p-2 text-base-content">Employee Email</th>
+            <th className="p-2 text-base-content">Total Hours</th>
           </tr>
         </thead>
         <tbody>
@@ -33,7 +33,7 @@ const HRDashboard = () => {
             data.map(({ email, totalHours }) => (
               <tr
                 key={email}
-                className="hover:bg-base-300 dark:hover:bg-base-400 text-base-content dark:text-base-100"
+                className="hover:bg-base-300 text-base-content"
               >
                 <td className="p-2">{email}</td>
                 <td className="p-2">{totalHours}</td>
@@ -41,7 +41,7 @@ const HRDashboard = () => {
             ))
           ) : (
             <tr>
-              <td colSpan={2} className="p-2 text-center text-base-content/70 dark:text-base-200">
+              <td colSpan={2} className="p-2 text-center text-base-content/70">
                 No work summary data found.
               </td>
             </tr>

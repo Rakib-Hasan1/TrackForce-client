@@ -34,12 +34,12 @@ const EmployeeDashboard = () => {
       <div className="p-6 flex flex-col lg:flex-row gap-5">
 
         {/* Section 2: Monthly Work Summary */}
-        <section className="bg-base-100 dark:bg-base-300 p-6 rounded-md">
+        <section className="bg-base-100 border border-base-300 p-6 rounded-md">
           <h2 className="text-3xl font-bold text-blue-500 mb-4 mozilla">
             Monthly Work Summary
           </h2>
           {workData.length === 0 ? (
-            <p className="text-base-content dark:text-base-200">No work data found.</p>
+            <p className="text-base-content">No work data found.</p>
           ) : (
             <ul className="list-disc list-inside space-y-1 text-base-content">
               {Object.entries(monthlySummary).map(([month, hours]) => (
@@ -54,7 +54,7 @@ const EmployeeDashboard = () => {
 
 
         {/* Section 1: Profile Info */}
-        <section className="bg-base-100 dark:bg-base-300 p-6 rounded-md">
+        <section className="bg-base-100 p-6 border border-base-300 rounded-md">
           <h2 className="text-3xl font-bold mb-4 text-blue-500 mozilla">
             Your Profile
           </h2>
@@ -65,11 +65,11 @@ const EmployeeDashboard = () => {
               className="w-24 h-24 rounded-full object-cover border-2 border-blue-500"
             />
             <div>
-              <p className="text-lg font-medium text-base-content dark:text-base-100">
+              <p className="text-lg font-medium text-base-content">
                 {user?.displayName || "No Name"}
               </p>
-              <p className="text-base-content dark:text-base-200">{user?.email}</p>
-              <p className="text-base-content dark:text-base-200 capitalize">
+              <p className="text-base-content">{user?.email}</p>
+              <p className="text-base-content capitalize">
                 {user?.role || "Employee"}
               </p>
             </div>

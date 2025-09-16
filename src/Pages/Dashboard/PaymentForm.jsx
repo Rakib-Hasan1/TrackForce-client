@@ -96,12 +96,12 @@ const PaymentForm = () => {
     <div className="flex justify-center mt-10">
       <form
         onSubmit={handleSubmit}
-        className="bg-base-100 dark:bg-base-200 p-6 rounded-xl shadow-lg w-full max-w-md space-y-4"
+        className="bg-base-200 p-6 rounded-xl shadow-lg w-full max-w-md space-y-4"
       >
-        <h2 className="text-xl font-semibold text-center mb-2 text-base-content dark:text-base-100">
+        <h2 className="text-xl font-semibold text-center mb-2 text-base-content">
           Pay Employee
         </h2>
-        <CardElement className="p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800" />
+        <CardElement className="p-3 border border-gray-300 rounded-md bg-white" />
         <button
           type="submit"
           disabled={!stripe || loading}

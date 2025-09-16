@@ -63,8 +63,8 @@ const EmployeeList = () => {
 
   return (
     <div className="overflow-x-auto rounded-md">
-      <table className="table table-zebra w-full bg-base-100 dark:bg-base-200 shadow-md rounded-md">
-        <thead className="bg-primary text-primary-content dark:bg-primary dark:text-primary-content">
+      <table className="table table-zebra w-full bg-base-200 shadow-md rounded-md">
+        <thead className="bg-primary text-primary-content">
           <tr>
             <th className="p-3">Employee Image</th>
             <th className="p-3">Role</th>
@@ -77,7 +77,7 @@ const EmployeeList = () => {
         </thead>
         <tbody>
           {peoplesData.map((people) => (
-            <tr key={people._id} className="hover:bg-base-300 dark:hover:bg-base-400">
+            <tr key={people._id} className="hover:bg-base-300">
               <td className="p-3">
                 <img
                   src={people.photo || "/default-avatar.png"}
@@ -85,12 +85,12 @@ const EmployeeList = () => {
                   alt={people.name}
                 />
               </td>
-              <td className="p-3 text-base-content dark:text-base-100">{people.role}</td>
-              <td className="p-3 text-base-content dark:text-base-100">{people.name}</td>
-              <td className="p-3 text-base-content dark:text-base-100">{people.designation}</td>
+              <td className="p-3 text-base-content">{people.role}</td>
+              <td className="p-3 text-base-content">{people.name}</td>
+              <td className="p-3 text-base-content">{people.designation}</td>
               <td className="p-3">
                 <button
-                  className="cursor-pointer text-base-content dark:text-base-100"
+                  className="cursor-pointer text-base-content"
                   onClick={() => {
                     Swal.fire({
                       title: people.isVerified ? "Unverify Employee?" : "Verify Employee?",
@@ -145,8 +145,8 @@ const EmployeeList = () => {
 
       {showPayModal && selectedEmployee && (
         <dialog open className="modal">
-          <div className="modal-box max-w-sm bg-base-100 dark:bg-base-200">
-            <h3 className="font-bold text-lg mb-4 text-base-content dark:text-base-100">
+          <div className="modal-box max-w-sm bg-base-100">
+            <h3 className="font-bold text-lg mb-4 text-base-content">
               Process Payment
             </h3>
 
@@ -168,36 +168,36 @@ const EmployeeList = () => {
               }}
             >
               <div className="mb-2">
-                <label className="block mb-1 text-base-content dark:text-base-100">
+                <label className="block mb-1 text-base-content">
                   Salary
                 </label>
                 <input
                   type="number"
                   value={selectedEmployee.salary}
                   readOnly
-                  className="input input-bordered w-full text-base-content dark:text-base-100"
+                  className="input input-bordered w-full text-base-content"
                 />
               </div>
 
               <div className="mb-2">
-                <label className="block mb-1 text-base-content dark:text-base-100">Month</label>
+                <label className="block mb-1 text-base-content">Month</label>
                 <input
                   type="text"
                   name="month"
                   placeholder="e.g., July"
                   required
-                  className="input input-bordered w-full text-base-content dark:text-base-100"
+                  className="input input-bordered w-full text-base-content"
                 />
               </div>
 
               <div className="mb-4">
-                <label className="block mb-1 text-base-content dark:text-base-100">Year</label>
+                <label className="block mb-1 text-base-content">Year</label>
                 <input
                   type="number"
                   name="year"
                   placeholder="e.g., 2025"
                   required
-                  className="input input-bordered w-full text-base-content dark:text-base-100"
+                  className="input input-bordered w-full text-base-content"
                 />
               </div>
 

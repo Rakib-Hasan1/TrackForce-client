@@ -32,7 +32,7 @@ const Progress = () => {
     });
   }, [axiosSecure]);
 
-  const { data: workRecords = [], isLoading, refetch } = useQuery({
+  const { data: workRecords = [], isLoading } = useQuery({
     queryKey: ["progress", selectedMonth, selectedEmail],
     queryFn: async () => {
       const res = await axiosSecure.get("/progress", {
@@ -47,7 +47,7 @@ const Progress = () => {
   });
 
   return (
-    <div className="p-4 bg-base-200 min-h-screen">
+    <div className="p-4 bg-base-200 min-h-screen rounded-md">
       <h2 className="text-3xl font-bold mb-6 text-center text-blue-500 mozilla">
         Employee Work Progress
       </h2>
@@ -55,7 +55,7 @@ const Progress = () => {
       <div className="flex gap-4 mb-6 flex-wrap justify-center">
         {/* Month Filter */}
         <select
-          className="select border border-blue-300 dark:border-blue-700 px-4 py-2 rounded-md w-full md:w-1/4 cursor-pointer bg-base-100 dark:bg-base-200 text-base-content dark:text-base-100"
+          className="select border border-blue-300 px-4 py-2 rounded-md w-full md:w-1/4 cursor-pointer bg-base-100  text-base-content "
           value={selectedMonth}
           onChange={(e) => setSelectedMonth(e.target.value)}
         >
@@ -69,7 +69,7 @@ const Progress = () => {
 
         {/* Email Filter */}
         <select
-          className="select border border-blue-300 dark:border-blue-700 px-4 py-2 rounded-md w-full md:w-1/4 cursor-pointer bg-base-100 dark:bg-base-200 text-base-content dark:text-base-100"
+          className="select border border-blue-300 px-4 py-2 rounded-md w-full md:w-1/4 cursor-pointer bg-base-100 text-base-content"
           value={selectedEmail}
           onChange={(e) => setSelectedEmail(e.target.value)}
         >
@@ -86,8 +86,8 @@ const Progress = () => {
         <LoadingEffect />
       ) : workRecords.length > 0 ? (
         <div className="overflow-x-auto rounded-lg shadow-md">
-          <table className="table w-full bg-base-100 dark:bg-base-200">
-            <thead className="bg-blue-600 text-white dark:bg-blue-700 dark:text-white">
+          <table className="table w-full">
+            <thead className="bg-blue-600 text-white">
               <tr>
                 <th className="p-3 text-left">Date</th>
                 <th className="p-3 text-left">Email</th>
@@ -97,22 +97,22 @@ const Progress = () => {
             </thead>
             <tbody>
               {workRecords.map((record) => (
-                <tr key={record._id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
-                  <td className="p-3 text-base-content dark:text-base-100">{new Date(record.date).toLocaleDateString()}</td>
-                  <td className="p-3 text-base-content dark:text-base-100">{record.email}</td>
-                  <td className="p-3 text-base-content dark:text-base-100">{record.task}</td>
-                  <td className="p-3 text-base-content dark:text-base-100">{record.hours}</td>
+                <tr key={record._id} className="hover:bg-base-300">
+                  <td className="p-3 text-base-content">{new Date(record.date).toLocaleDateString()}</td>
+                  <td className="p-3 text-base-content">{record.email}</td>
+                  <td className="p-3 text-base-content">{record.task}</td>
+                  <td className="p-3 text-base-content">{record.hours}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       ) : selectedMonth ? (
-        <p className="text-center text-gray-500 dark:text-gray-300 mt-6">
+        <p className="text-center text-gray-500 mt-6">
           No records found for selected filters.
         </p>
       ) : (
-        <p className="text-center text-gray-400 dark:text-gray-400 mt-6">
+        <p className="text-center text-gray-400 mt-6">
           Please select a month to view data.
         </p>
       )}

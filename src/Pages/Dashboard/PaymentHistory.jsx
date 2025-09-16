@@ -28,12 +28,12 @@ const PaymentHistory = () => {
   );
 
   return (
-    <div className="overflow-x-auto p-4 bg-base-100 rounded-lg shadow-md">
+    <div className="overflow-x-auto p-4 bg-base-200 rounded-lg shadow-md">
       <h2 className="text-3xl font-bold mb-4 text-blue-500 mozilla">
         Payment History
       </h2>
 
-      <table className="table w-full bg-white dark:bg-gray-800 rounded-md shadow overflow-hidden">
+      <table className="table w-full bg-base-100 rounded-md shadow overflow-hidden">
         <thead className="bg-primary text-white">
           <tr>
             <th className="p-3">Month, Year</th>
@@ -44,7 +44,7 @@ const PaymentHistory = () => {
         </thead>
         <tbody>
           {paginatedData.map((item) => (
-            <tr key={item._id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
+            <tr key={item._id} className="hover:bg-base-300">
               <td className="p-3">{`${item.month}, ${item.year}`}</td>
               <td className="p-3">${item.salary}</td>
               <td className="p-3">{item.status === "paid" ? item.transactionId : item.status}</td>

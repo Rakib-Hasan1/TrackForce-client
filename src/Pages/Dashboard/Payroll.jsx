@@ -27,7 +27,7 @@ const Payroll = () => {
         Payment Requests
       </h2>
 
-      <table className="table w-full bg-white dark:bg-gray-800 rounded-md shadow overflow-hidden">
+      <table className="table w-full bg-base-200 rounded-md shadow overflow-hidden">
         <thead className="bg-blue-600 text-white">
           <tr>
             <th className="p-3 text-left">Employee</th>
@@ -41,7 +41,7 @@ const Payroll = () => {
         </thead>
         <tbody>
           {paymentRequests.map((req) => (
-            <tr key={req._id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
+            <tr key={req._id} className="hover:bg-base-300">
               <td className="p-3">{req.name}</td>
               <td className="p-3">${req.salary}</td>
               <td className="p-3">{req.year}</td>

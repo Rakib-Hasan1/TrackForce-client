@@ -92,8 +92,8 @@ const AllEmployeeList = () => {
       {/* Table View */}
       {isTableView ? (
         <div className="overflow-x-auto">
-          <table className="table w-full bg-base-100 rounded-md">
-            <thead className="text-black">
+          <table className="table w-full bg-base-200 rounded-md">
+            <thead className="bg-blue-600 text-white">
               <tr>
                 <th className="p-3 text-left">Name</th>
                 <th className="p-3 text-left">Designation</th>
@@ -105,7 +105,7 @@ const AllEmployeeList = () => {
             </thead>
             <tbody>
               {employees.map((person) => (
-                <tr key={person._id} className="">
+                <tr key={person._id} className="hover:bg-base-300">
                   <td className="p-3">{person.name}</td>
                   <td className="p-3">{person.designation}</td>
                   <td className="p-3 capitalize">{person.role}</td>
@@ -165,7 +165,7 @@ const AllEmployeeList = () => {
         // Card View
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {employees.map((person) => (
-            <div key={person._id} className="p-4 bg-base-100 shadow rounded space-y-2">
+            <div key={person._id} className="p-4 bg-base-200 shadow rounded space-y-2">
               <h3 className="text-lg font-bold">{person.name}</h3>
               <p className="text-sm">Designation: {person.designation}</p>
               <p className="text-sm capitalize">Role: {person.role}</p>
@@ -192,7 +192,7 @@ const AllEmployeeList = () => {
                     Make HR
                   </button>
                 ) : (
-                  <span className="text-gray-400 dark:text-gray-300 text-sm">Already HR</span>
+                  <span className="text-gray-400 text-sm">Already HR</span>
                 )}
 
                 {!person.isFired ? (
